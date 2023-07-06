@@ -1454,7 +1454,7 @@ echo $response2;
 
         
     } else {
-        echo 'Error: Encabezados faltantes';
+        echo 'Error: Encabezados faltantes2';
     }
 });
 
