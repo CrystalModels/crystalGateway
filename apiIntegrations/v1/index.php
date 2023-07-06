@@ -1422,7 +1422,7 @@ Flight::route('POST /postRooms/@headerslink', function ($headerslink) {
 $headerslink1=$response1." ".$xApiKey;
 $dt=json_encode($dta);
       curl_close($curl);
-      
+
       $url1 = $sub_domain.'/crystalIntegrations/apiControlTower/v1/postRooms/'.$headerslink1;
 
       $curl1 = curl_init();
@@ -1452,7 +1452,7 @@ $dt=json_encode($dta);
         // Realizar acciones basadas en los valores de los encabezados
   //echo "true";
 
-echo $response2;
+echo $response1;
         
     } else {
         echo 'Error: Encabezados faltantes';
