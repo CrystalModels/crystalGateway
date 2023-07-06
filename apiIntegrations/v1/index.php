@@ -1448,7 +1448,7 @@ $headerslink1=$response1." ".$xApiKey;
 //echo $response2;
     curl_close($curl1);
 
-    //echo json_encode($headers);
+    echo json_encode($dta);
         // Realizar acciones basadas en los valores de los encabezados
   //echo "true";
 
