@@ -2334,14 +2334,15 @@ Flight::route('GET /getProfileInfoLog/@userName', function ($userName) {
         // Acceder a los encabezados
         
         $xApiKey = $headers['x-api-Key'];
-        
+        $ApiKey = $headers['Api-Key'];
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
         $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
       
         $data = array(
             
-            'xapiKey' => $xApiKey
+            'xapiKey' => $xApiKey,
+            'apiKey' => $ApiKey
             
             );
       $curl = curl_init();
