@@ -1419,10 +1419,10 @@ Flight::route('POST /postRooms/@headerslink', function ($headerslink) {
       
       $sub_domaincon=new model_dom();
       $sub_domain=$sub_domaincon->domIntegrations();
-$headerslink=$response1." ".$xApiKey;
+$headerslink1=$response1." ".$xApiKey;
 
       curl_close($curl);
-      $url = $sub_domain.'/crystalIntegrations/apiControlTower/v1/postRooms/'.$headerslink;
+      $url = $sub_domain.'/crystalIntegrations/apiControlTower/v1/postRooms/'.$headerslink1;
 
       $curl = curl_init();
       
