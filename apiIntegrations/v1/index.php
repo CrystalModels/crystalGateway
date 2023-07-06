@@ -1446,8 +1446,7 @@ $dt=json_encode($dta);
         // Realizar acciones basadas en los valores de los encabezados
   //echo "true";
 
-echo Flight::request()->data->name;
-echo $response2." ".$response1;
+echo $response2;
         
     } else {
         echo 'Error: Encabezados faltantes';
