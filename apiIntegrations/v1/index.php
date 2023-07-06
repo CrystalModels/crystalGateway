@@ -9,6 +9,8 @@ require 'env/domain.php';
 
 Flight::route('POST /postLogReport', function () {
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -98,6 +100,8 @@ echo $response2;
 Flight::route('GET /getAllLogsBySuperAdmin/', function () {
     
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 
     $headers = getallheaders();
@@ -189,6 +193,8 @@ Flight::route('GET /getAllLogsBySuperAdmin/', function () {
 Flight::route('GET /getAllRooms/', function () {
     
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 
     $headers = getallheaders();
@@ -278,6 +284,8 @@ Flight::route('GET /getAllRooms/', function () {
 Flight::route('GET /getOneRooms/@roomId', function ($roomId) {
     
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 
     $headers = getallheaders();
@@ -368,6 +376,8 @@ Flight::route('GET /getOneRooms/@roomId', function ($roomId) {
 Flight::route('GET /getAllPages/', function () {
     
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 
     $headers = getallheaders();
@@ -456,6 +466,8 @@ Flight::route('GET /getAllPages/', function () {
 Flight::route('GET /getOnePages/@pageId', function ($pageId) {
     
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 
     $headers = getallheaders();
@@ -545,6 +557,8 @@ Flight::route('GET /getOnePages/@pageId', function ($pageId) {
 Flight::route('GET /getAllCurrency/', function () {
     
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 
     $headers = getallheaders();
@@ -634,6 +648,8 @@ Flight::route('GET /getAllCurrency/', function () {
 Flight::route('GET /getOneCurrency/@currencyId', function ($currencyId) {
     
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 
     $headers = getallheaders();
@@ -722,6 +738,8 @@ Flight::route('GET /getOneCurrency/@currencyId', function ($currencyId) {
 Flight::route('GET /getCurrencyList/', function () {
     
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 
     $headers = getallheaders();
@@ -811,6 +829,8 @@ Flight::route('GET /getCurrencyList/', function () {
 Flight::route('GET /getOneLogsBySuperAdmin/@profileId', function ($profileId) {
     
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 
     $headers = getallheaders();
@@ -900,6 +920,8 @@ Flight::route('GET /getOneLogsBySuperAdmin/@profileId', function ($profileId) {
 
 Flight::route('POST /postLogInfoModels', function () {
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -990,6 +1012,8 @@ echo $response2;
 
 Flight::route('POST /postPages', function () {
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -1080,6 +1104,8 @@ echo $response2;
 
 Flight::route('POST /putPages', function () {
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -1170,6 +1196,8 @@ echo $response2;
 
 Flight::route('POST /putPageStatus', function () {
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -1257,6 +1285,8 @@ echo $response2;
 
 Flight::route('POST /putPageCurrency', function () {
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -1345,6 +1375,8 @@ echo $response2;
 
 Flight::route('POST /postRooms', function () {
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -1432,6 +1464,8 @@ echo $response2;
 
 Flight::route('POST /putRooms', function () {
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -1519,6 +1553,8 @@ echo $response2;
 
 Flight::route('POST /putRoomsStatus', function () {
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -1607,6 +1643,8 @@ echo $response2;
 
 Flight::route('POST /putCurrencyStatus', function () {
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -1696,6 +1734,8 @@ echo $response2;
 
 Flight::route('POST /postCurrency', function () {
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -1786,6 +1826,8 @@ echo $response2;
 
 Flight::route('POST /putCurrency', function () {
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     

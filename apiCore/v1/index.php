@@ -10,6 +10,8 @@ require 'env/domain.php';
 
 Flight::route('POST /postUsersBySuperAdmin', function () {
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -103,6 +105,8 @@ echo $response2;
 
 Flight::route('POST /postUsersByAdmin/@profileId', function ($profileId) {
     header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -195,6 +199,8 @@ echo $response2;
 
 Flight::route('POST /putUsersByAdmin/@profileId/@putId', function ($profileId,$putId) {
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -287,6 +293,8 @@ echo $response2;
 
 Flight::route('POST /putUsersBySuperAdmin/@putId', function ($putId) {
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -381,6 +389,8 @@ echo $response2;
 
 Flight::route('POST /putUserStatusBySuperAdmin', function () {
     header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -466,6 +476,8 @@ echo $response2;
 
 Flight::route('POST /putUsersBySuperAdminGeneral/@putId', function ($putId) {
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -557,7 +569,8 @@ echo $response2;
 
 Flight::route('POST /putUsersRolByAdmin/@profileId/@putId', function ($profileId,$putId) {
     header("Access-Control-Allow-Origin: *");
-    // Leer los encabezados
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     $headers = getallheaders();
     
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
@@ -641,6 +654,8 @@ echo $response2;
 
 Flight::route('POST /putKeyword/@profileId', function ($profileId) {
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -726,6 +741,8 @@ echo $response2;
 
 Flight::route('POST /forgotKeyword/', function () {
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -809,6 +826,8 @@ echo $response2;
 
 Flight::route('POST /forgotKeywordValidate/', function () {
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -894,8 +913,8 @@ echo $response2;
 
 Flight::route('POST /validateLogIn/@headerslink', function ($headerslink) {
     header("Access-Control-Allow-Origin: *");
-    // Leer los encabezados
-   // $headers = getallheaders();
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     $parts = explode(" ", $headerslink);
 
 // Crear el array con los valores correspondientes
@@ -976,6 +995,8 @@ echo $response2;
 
 Flight::route('POST /validateLogOut/', function () {
     header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -1061,6 +1082,8 @@ echo $response2;
 
 Flight::route('POST /putUsersRolBySuperAdmin/', function () {
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -1147,6 +1170,8 @@ echo $response2;
 
 Flight::route('POST /putUsersRolByAdmin/@profileId', function ($profileId) {
     header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -1234,6 +1259,8 @@ echo $response2;
 
 Flight::route('POST /putKeyword/@profileId', function ($profileId) {
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -1319,6 +1346,8 @@ echo $response2;
 
 Flight::route('POST /forgotKeyword/', function () {
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -1437,6 +1466,8 @@ Flight::route('GET /getSecretKey/@clientId', function ($clientId) {
 
 Flight::route('POST /forgotKeywordValidate/', function () {
     header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
     $headers = getallheaders();
     
@@ -1523,8 +1554,8 @@ echo $response2;
 Flight::route('GET /getAllUsersBySuperAdmin/', function () {
     
     header("Access-Control-Allow-Origin: *");
-
-
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     $headers = getallheaders();
     
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
@@ -1611,8 +1642,8 @@ Flight::route('GET /getAllUsersBySuperAdmin/', function () {
 Flight::route('GET /getAllModels/', function () {
     
     header("Access-Control-Allow-Origin: *");
-
-
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     $headers = getallheaders();
     
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
@@ -1701,7 +1732,8 @@ Flight::route('GET /getAllModels/', function () {
 Flight::route('GET /getAllMonitors/', function () {
     
     header("Access-Control-Allow-Origin: *");
-
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
     $headers = getallheaders();
     
@@ -1790,6 +1822,8 @@ Flight::route('GET /getAllMonitors/', function () {
 Flight::route('GET /getAllPhotographs/', function () {
     
     header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 
     $headers = getallheaders();
@@ -1879,7 +1913,8 @@ Flight::route('GET /getAllPhotographs/', function () {
 Flight::route('GET /getAllRoles/', function () {
     
     header("Access-Control-Allow-Origin: *");
-
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
     $headers = getallheaders();
     
@@ -1966,7 +2001,8 @@ Flight::route('GET /getAllRoles/', function () {
 Flight::route('GET /getAllRolesAdmin/', function () {
     
     header("Access-Control-Allow-Origin: *");
-
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
     $headers = getallheaders();
     
@@ -2055,7 +2091,8 @@ Flight::route('GET /getAllRolesAdmin/', function () {
 Flight::route('GET /getOneUserBySuperAdmin/@profileId', function ($profileId) {
     
     header("Access-Control-Allow-Origin: *");
-
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
     $headers = getallheaders();
     
@@ -2143,8 +2180,8 @@ Flight::route('GET /getOneUserBySuperAdmin/@profileId', function ($profileId) {
 Flight::route('GET /getAllUsersByAdmin/@adminId', function ($adminId) {
     
     header("Access-Control-Allow-Origin: *");
-
-
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     $headers = getallheaders();
     
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
@@ -2230,8 +2267,9 @@ Flight::route('GET /getAllUsersByAdmin/@adminId', function ($adminId) {
 
 
 Flight::route('GET /getOneUserByAdmin/@adminId/@profileId', function ($adminId,$profileId) {
-    
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 
     $headers = getallheaders();
@@ -2414,6 +2452,8 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 Flight::route('GET /getAllUsersGeneral/@profileId', function ($profileId) {
     
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 
     $headers = getallheaders();

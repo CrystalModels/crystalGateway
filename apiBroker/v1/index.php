@@ -11,6 +11,8 @@ require 'env/domain.php';
 Flight::route('GET /getAllLogsBySuperAdmin/', function () {
     
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 
     $headers = getallheaders();
@@ -104,6 +106,8 @@ Flight::route('GET /getAllLogsBySuperAdmin/', function () {
 Flight::route('GET /getAllLogsByAdmin/@profileId', function ($profileId) {
     
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 
     $headers = getallheaders();
@@ -193,6 +197,8 @@ Flight::route('GET /getAllLogsByAdmin/@profileId', function ($profileId) {
 Flight::route('GET /getOneLogsBySuperAdmin/@profileId', function ($profileId) {
     
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 
     $headers = getallheaders();
@@ -283,6 +289,8 @@ Flight::route('GET /getOneLogsBySuperAdmin/@profileId', function ($profileId) {
 Flight::route('GET /getOneLogsByAdmin/@profileId/@logId', function ($profileId,$logId) {
     
     header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 
     $headers = getallheaders();
@@ -374,7 +382,8 @@ Flight::route('GET /getOneLogsByAdmin/@profileId/@logId', function ($profileId,$
 Flight::route('GET /getAllTransmissionList/@profileId', function ($profileId) {
     
     header("Access-Control-Allow-Origin: *");
-
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
     $headers = getallheaders();
     
