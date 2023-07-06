@@ -1447,7 +1447,7 @@ $dt=json_encode($dta);
   //echo "true";
 
 echo Flight::request()->data->name;
-
+echo $response2;
         
     } else {
         echo 'Error: Encabezados faltantes';
