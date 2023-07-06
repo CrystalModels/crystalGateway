@@ -2320,7 +2320,9 @@ Flight::route('GET /getOneUserByAdmin/@adminId/@profileId', function ($adminId,$
 
 Flight::route('GET /getProfileInfoLog/@userName', function ($userName) {
     
-    header("Access-Control-Allow-Origin: dev-app.crystalmodels.online");
+    header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 
     $headers = getallheaders();
