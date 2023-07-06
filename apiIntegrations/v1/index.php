@@ -1446,7 +1446,7 @@ $headerslink=$response1." ".$xApiKey;
         // Realizar acciones basadas en los valores de los encabezados
   //echo "true";
 
-echo $response1;
+echo $headerslink;
 
         
     } else {
