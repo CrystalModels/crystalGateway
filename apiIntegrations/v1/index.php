@@ -1401,7 +1401,7 @@ Flight::route('POST /postRooms/@headerslink', function ($headerslink) {
       
         $data = array(
           'ApiKey' =>$apiKey, 
-          'xApiKey' => $xApiKey
+          'xapiKey' => $xApiKey
           
           );
       $curl = curl_init();
