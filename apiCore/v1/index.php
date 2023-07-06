@@ -912,10 +912,10 @@ Flight::route('POST /validateLogIn/', function () {
         
         $xApiKey = $headers['x-api-Key'];
         
-
+        $ApiKey = $headers['Api-Key'];
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
-        $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
+        $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyLog/';
       
         $data = array(
           
