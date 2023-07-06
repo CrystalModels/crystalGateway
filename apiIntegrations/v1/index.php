@@ -1422,30 +1422,31 @@ Flight::route('POST /postRooms/@headerslink', function ($headerslink) {
 $headerslink1=$response1." ".$xApiKey;
 $dt=json_encode($dta);
       curl_close($curl);
+      
       $url1 = $sub_domain.'/crystalIntegrations/apiControlTower/v1/postRooms/'.$headerslink1;
 
-      $curl = curl_init();
+      $curl1 = curl_init();
       
-      curl_setopt($curl, CURLOPT_URL, $url1);
-      curl_setopt($curl, CURLOPT_POST, true);
-      curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($dta));
-      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($curl1, CURLOPT_URL, $url1);
+      curl_setopt($curl1, CURLOPT_POST, true);
+      curl_setopt($curl1, CURLOPT_POSTFIELDS, json_encode($dta));
+      curl_setopt($curl1, CURLOPT_RETURNTRANSFER, true);
 
       // Establecer el encabezado con el API key
       $headers = array(
           'Content-Type: application/json'
       );
-      curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+      curl_setopt($curl1, CURLOPT_HTTPHEADER, $headers);
       
       
       // Ejecutar la solicitud y obtener la respuesta
-      $response2 = curl_exec($curl);
+      $response2 = curl_exec($curl1);
       
 
     //echo json_encode($headers);
 
 //echo $response2;
-    curl_close($curl);
+    curl_close($curl1);
 
     //echo json_encode($headers);
         // Realizar acciones basadas en los valores de los encabezados
