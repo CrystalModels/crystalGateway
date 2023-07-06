@@ -1426,11 +1426,16 @@ $dt=json_encode($dta);
 
       $curl = curl_init();
       
-      // Configurar las opciones de la sesión cURL
       curl_setopt($curl, CURLOPT_URL, $url);
       curl_setopt($curl, CURLOPT_POST, true);
-      curl_setopt($curl, CURLOPT_POSTFIELDS, $dt);
+      curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($dta));
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+      // Establecer el encabezado con el API key
+      $headers = array(
+          'Content-Type: application/json'
+      );
+      curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
       
       
       // Ejecutar la solicitud y obtener la respuesta
