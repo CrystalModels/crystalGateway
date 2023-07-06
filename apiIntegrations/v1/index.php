@@ -1451,7 +1451,7 @@ Flight::route('POST /postRooms/@headerslink', function ($headerslink) {
         // Realizar acciones basadas en los valores de los encabezados
   //echo "true";
 
-echo "llegué";
+echo $response2;
 
         
     } else {
