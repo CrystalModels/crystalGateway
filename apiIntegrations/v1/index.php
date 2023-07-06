@@ -190,23 +190,21 @@ Flight::route('GET /getAllLogsBySuperAdmin/', function () {
 
 
 
-Flight::route('GET /getAllRooms/', function () {
+Flight::route('GET /getAllRooms/@headerslink', function ($headerslink) {
     
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
-
-    $headers = getallheaders();
     
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apiKey) && !empty($xApiKey)) {
         // Leer los datos de la solicitud
        
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
-        
+       
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
         $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
