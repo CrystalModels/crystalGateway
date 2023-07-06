@@ -1422,11 +1422,11 @@ Flight::route('POST /postRooms/@headerslink', function ($headerslink) {
 $headerslink1=$response1." ".$xApiKey;
 $dt=json_encode($dta);
       curl_close($curl);
-      $url = $sub_domain.'/crystalIntegrations/apiControlTower/v1/postRooms/'.$headerslink1;
+      $url1 = $sub_domain.'/crystalIntegrations/apiControlTower/v1/postRooms/'.$headerslink1;
 
       $curl = curl_init();
       
-      curl_setopt($curl, CURLOPT_URL, $url);
+      curl_setopt($curl, CURLOPT_URL, $url1);
       curl_setopt($curl, CURLOPT_POST, true);
       curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($dta));
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
