@@ -1371,15 +1371,18 @@ echo $response2;
 
 
 
-Flight::route('POST /postRooms', function () {
+Flight::route('POST /postRooms/@headerslink', function ($headerslink) {
+  
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-    // Leer los encabezados
-    $headers = getallheaders();
     
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apiKey) && !empty($xApiKey)) {
         // Leer los datos de la solicitud
         $dta = [
             
@@ -1389,9 +1392,7 @@ Flight::route('POST /postRooms', function () {
 
 
 
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
+    
         
 
         $sub_domaincon=new model_dom();
