@@ -1384,11 +1384,11 @@ Flight::route('POST /postRooms/@headerslink', function ($headerslink) {
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
     if (!empty($apiKey) && !empty($xApiKey)) {
         // Leer los datos de la solicitud
-        $dta = [
+        $dta = array(
             
             'name' => Flight::request()->data->name,
             'comments' => Flight::request()->data->comments
-        ];
+        );
 
 
 
@@ -1417,12 +1417,12 @@ Flight::route('POST /postRooms/@headerslink', function ($headerslink) {
       $response1 = curl_exec($curl);
 
       
-      $sub_domaincon=new model_dom();
-      $sub_domain=$sub_domaincon->domIntegrations();
-$headerslink1=$response1." ".$xApiKey;
 $dt=json_encode($dta);
       curl_close($curl);
 
+      $sub_domaincon=new model_dom();
+      $sub_domain=$sub_domaincon->domIntegrations();
+$headerslink1=$response1." ".$xApiKey;
       $url1 = $sub_domain.'/crystalIntegrations/apiControlTower/v1/postRooms/'.$headerslink1;
 
       $curl1 = curl_init();
@@ -1452,7 +1452,7 @@ $dt=json_encode($dta);
         // Realizar acciones basadas en los valores de los encabezados
   //echo "true";
 
-echo $response1;
+echo $response2;
         
     } else {
         echo 'Error: Encabezados faltantes';
