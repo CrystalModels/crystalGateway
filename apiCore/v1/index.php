@@ -949,10 +949,6 @@ Flight::route('POST /validateLogIn/@headerslink', function ($headerslink) {
       curl_setopt($curl, CURLOPT_POSTFIELDS, $dta);
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
       
-      $headers1 = array(
-          'x-api-Key: ' . $headerslink
-      );
-      curl_setopt($curl, CURLOPT_HTTPHEADER, $headers1);
       
       // Ejecutar la solicitud y obtener la respuesta
       $response2 = curl_exec($curl);
