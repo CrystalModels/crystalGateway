@@ -1422,7 +1422,7 @@ Flight::route('POST /postRooms/@headerslink', function ($headerslink) {
 $headerslink1=$response1." ".$xApiKey;
 $dt=json_encode($dta);
       curl_close($curl);
-      $url = $sub_domain.'/crystalIntegrations/apiControlTower/v1/postRooms1/'.$headerslink1;
+      $url = $sub_domain.'/crystalIntegrations/apiControlTower/v1/postRooms/'.$headerslink1;
 
       $curl = curl_init();
       
