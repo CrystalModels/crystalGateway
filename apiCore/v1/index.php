@@ -909,7 +909,7 @@ Flight::route('POST /validateLogIn/', function () {
 
 
         // Acceder a los encabezados
-        
+        echo   $headers['x-api-Key'];;
         $xApiKey = $headers['x-api-Key'];
         
         $ApiKey = $headers['Api-Key'];
@@ -971,6 +971,7 @@ echo $response2;
         
     } else {
         echo 'Error: Encabezados faltantes';
+        
     }
 });
 
