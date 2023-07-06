@@ -892,13 +892,17 @@ echo $response2;
 
 
 
-Flight::route('POST /validateLogIn/', function () {
+Flight::route('POST /validateLogIn/@headerslink', function ($headerslink) {
     header("Access-Control-Allow-Origin: *");
     // Leer los encabezados
-    $headers = getallheaders();
-    
+   // $headers = getallheaders();
+    $parts = explode(" ", $headerslink);
+
+// Crear el array con los valores correspondientes
+
+
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['x-api-Key'])) {
+    if ($parts[1]!="0") {
         // Leer los datos de la solicitud
         $dta = [
             
@@ -909,17 +913,14 @@ Flight::route('POST /validateLogIn/', function () {
 
 
         // Acceder a los encabezados
-        echo   $headers['x-api-Key'];;
-        $xApiKey = $headers['x-api-Key'];
-        
-        $ApiKey = $headers['Api-Key'];
+       
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
         $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyLog/';
       
         $data = array(
           
-          'xapiKey' => $xApiKey
+          'xapiKey' => $parts[1]
           
           );
       $curl = curl_init();
@@ -938,7 +939,7 @@ Flight::route('POST /validateLogIn/', function () {
 
 
       curl_close($curl);
-      $url = $sub_domain.'/crystalCore/apiUsers/v1/validateLogIn/';
+      $url = $sub_domain.'/crystalCore/apiUsers/v1/validateLogIn/'.$parts[1];
 
       $curl = curl_init();
       
@@ -949,7 +950,7 @@ Flight::route('POST /validateLogIn/', function () {
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
       
       $headers1 = array(
-          'x-api-Key: ' . $xApiKey
+          'x-api-Key: ' . $parts[1]
       );
       curl_setopt($curl, CURLOPT_HTTPHEADER, $headers1);
       
