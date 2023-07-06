@@ -1551,20 +1551,21 @@ echo $response2;
 });
 
 
-Flight::route('GET /getAllUsersBySuperAdmin/', function () {
+Flight::route('GET /getAllUsersBySuperAdmin/@headerslink', function ($headerslink) {
     
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     $headers = getallheaders();
-    
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xapiKey=$parts[1];
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if ($apiKey!="0" && $xapiKey!="0") {
         // Leer los datos de la solicitud
        
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
+       
         
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
@@ -1572,7 +1573,7 @@ Flight::route('GET /getAllUsersBySuperAdmin/', function () {
       
         $data = array(
             'ApiKey' =>$apiKey, 
-            'xapiKey' => $xApiKey
+            'xapiKey' => $xapiKey
             
             );
       $curl = curl_init();
@@ -1608,7 +1609,7 @@ Flight::route('GET /getAllUsersBySuperAdmin/', function () {
             $options = array(
                 'http' => array(
                     'header' => "Api-Key: $response1\r\n" .
-                                "x-api-Key: $xApiKey\r\n"
+                                "x-api-Key: $xapiKey\r\n"
                 )
             );
             $context = stream_context_create($options);
