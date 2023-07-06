@@ -1420,7 +1420,7 @@ Flight::route('POST /postRooms/@headerslink', function ($headerslink) {
       $sub_domaincon=new model_dom();
       $sub_domain=$sub_domaincon->domIntegrations();
 $headerslink1=$response1." ".$xApiKey;
-
+$dt=json_encode($dta);
       curl_close($curl);
       $url = $sub_domain.'/crystalIntegrations/apiControlTower/v1/postRooms/'.$headerslink1;
 
@@ -1429,7 +1429,7 @@ $headerslink1=$response1." ".$xApiKey;
       // Configurar las opciones de la sesión cURL
       curl_setopt($curl, CURLOPT_URL, $url);
       curl_setopt($curl, CURLOPT_POST, true);
-      curl_setopt($curl, CURLOPT_POSTFIELDS, $dta);
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $dt);
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
       
       
