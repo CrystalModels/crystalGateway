@@ -1640,21 +1640,22 @@ Flight::route('GET /getAllUsersBySuperAdmin/@headerslink', function ($headerslin
 });
 
 
-Flight::route('GET /getAllModels/', function () {
+Flight::route('GET /getAllModels/@headerslink', function ($headerslink) {
     
+   
     header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-    $headers = getallheaders();
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apiKey) && !empty($xApiKey)) {
         // Leer los datos de la solicitud
        
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
-        
+     
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
         $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
@@ -1730,22 +1731,22 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 
 
 
-Flight::route('GET /getAllMonitors/', function () {
+Flight::route('GET /getAllMonitors/@headerslink', function ($headerslink) {
     
+   
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
-    $headers = getallheaders();
     
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apiKey) && !empty($xApiKey)) {
         // Leer los datos de la solicitud
        
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
-        
+       
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
         $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
@@ -1820,22 +1821,22 @@ Flight::route('GET /getAllMonitors/', function () {
 
 
 
-Flight::route('GET /getAllPhotographs/', function () {
+Flight::route('GET /getAllPhotographs/@headerslink', function ($headerslink) {
     
+   
     header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
-
-    $headers = getallheaders();
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apiKey) && !empty($xApiKey)) {
         // Leer los datos de la solicitud
        
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
+       
         
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
@@ -1911,21 +1912,22 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 
 
 
-Flight::route('GET /getAllRoles/', function () {
+Flight::route('GET /getAllRoles/@headerslink', function ($headerslink) {
     
+   
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
-    $headers = getallheaders();
     
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apiKey) && !empty($xApiKey)) {
         // Leer los datos de la solicitud
        
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
+        
         
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
@@ -1999,21 +2001,23 @@ Flight::route('GET /getAllRoles/', function () {
 
 });
 
-Flight::route('GET /getAllRolesAdmin/', function () {
+Flight::route('GET /getAllRolesAdmin/@headerslink', function ($headerslink) {
     
+  
+   
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
-    $headers = getallheaders();
     
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apiKey) && !empty($xApiKey)) {
         // Leer los datos de la solicitud
        
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
+    
         
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
@@ -2089,21 +2093,22 @@ Flight::route('GET /getAllRolesAdmin/', function () {
 
 
 
-Flight::route('GET /getOneUserBySuperAdmin/@profileId', function ($profileId) {
+Flight::route('GET /getOneUserBySuperAdmin/@headerslink/@profileId', function ($headerslink,$profileId) {
     
+   
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
-    $headers = getallheaders();
     
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apiKey) && !empty($xApiKey)) {
         // Leer los datos de la solicitud
        
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
+       
         
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
@@ -2178,20 +2183,21 @@ Flight::route('GET /getOneUserBySuperAdmin/@profileId', function ($profileId) {
 });
 
 
-Flight::route('GET /getAllUsersByAdmin/@adminId', function ($adminId) {
+Flight::route('GET /getAllUsersByAdmin/@headerslink/@adminId', function ($headerslink,$adminId) {
     
+   
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-    $headers = getallheaders();
     
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apiKey) && !empty($xApiKey)) {
         // Leer los datos de la solicitud
-       
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
+      
         
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
@@ -2267,21 +2273,22 @@ Flight::route('GET /getAllUsersByAdmin/@adminId', function ($adminId) {
 
 
 
-Flight::route('GET /getOneUserByAdmin/@adminId/@profileId', function ($adminId,$profileId) {
+Flight::route('GET /getOneUserByAdmin/@headerslink/@adminId/@profileId', function ($headerslink,$adminId,$profileId) {
+  
+   
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
-
-    $headers = getallheaders();
     
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apiKey) && !empty($xApiKey)) {
         // Leer los datos de la solicitud
        
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
+     
         
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
@@ -2359,7 +2366,7 @@ Flight::route('GET /getOneUserByAdmin/@adminId/@profileId', function ($adminId,$
 
 Flight::route('GET /getProfileInfoLog/@userName', function ($userName) {
     
-    header("Access-Control-Allow-Origin: https://dev-app.crystalmodels.online");
+    header("Access-Control-Allow-Origin: *");
 
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
@@ -2451,22 +2458,22 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 
 
 
-Flight::route('GET /getAllUsersGeneral/@profileId', function ($profileId) {
+Flight::route('GET /getAllUsersGeneral/@headerslink/@profileId', function ($headerslink,$profileId) {
     
+   
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
-
-    $headers = getallheaders();
     
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apiKey) && !empty($xApiKey)) {
         // Leer los datos de la solicitud
        
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
+       
         
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();

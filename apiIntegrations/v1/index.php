@@ -97,22 +97,22 @@ echo $response2;
 
 
 
-Flight::route('GET /getAllLogsBySuperAdmin/', function () {
+Flight::route('GET /getAllLogsBySuperAdmin/@headerslink', function ($headerslink) {
     
+   
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
-
-    $headers = getallheaders();
     
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apiKey) && !empty($xApiKey)) {
         // Leer los datos de la solicitud
        
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
+      
         
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
@@ -279,22 +279,21 @@ Flight::route('GET /getAllRooms/@headerslink', function ($headerslink) {
 
 
 
-Flight::route('GET /getOneRooms/@roomId', function ($roomId) {
+Flight::route('GET /getOneRooms/@headerslink/@roomId', function ($headerslink,$roomId) {
     
+   
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
-
-    $headers = getallheaders();
     
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apiKey) && !empty($xApiKey)) {
         // Leer los datos de la solicitud
        
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
         
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
@@ -371,22 +370,22 @@ Flight::route('GET /getOneRooms/@roomId', function ($roomId) {
 
 
 
-Flight::route('GET /getAllPages/', function () {
+Flight::route('GET /getAllPages/@headerslink', function ($headerslink) {
     
+   
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
-
-    $headers = getallheaders();
     
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apiKey) && !empty($xApiKey)) {
         // Leer los datos de la solicitud
        
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
+     
         
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
@@ -461,22 +460,23 @@ Flight::route('GET /getAllPages/', function () {
 });
 
 
-Flight::route('GET /getOnePages/@pageId', function ($pageId) {
+Flight::route('GET /getOnePages/@headerslink/@pageId', function ($headerslink,$pageId) {
     
+   
+   
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
-
-    $headers = getallheaders();
     
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apiKey) && !empty($xApiKey)) {
         // Leer los datos de la solicitud
        
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
+       
         
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
@@ -552,22 +552,22 @@ Flight::route('GET /getOnePages/@pageId', function ($pageId) {
 
 
 
-Flight::route('GET /getAllCurrency/', function () {
+Flight::route('GET /getAllCurrency/@headerslink', function ($headerslink) {
     
+   
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
-
-    $headers = getallheaders();
     
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apiKey) && !empty($xApiKey)) {
         // Leer los datos de la solicitud
        
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
+       
         
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
@@ -643,22 +643,21 @@ Flight::route('GET /getAllCurrency/', function () {
 
 
 
-Flight::route('GET /getOneCurrency/@currencyId', function ($currencyId) {
+Flight::route('GET /getOneCurrency/@headerslink/@currencyId', function ($headerslink,$currencyId) {
     
+   
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
-
-    $headers = getallheaders();
     
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apiKey) && !empty($xApiKey)) {
         // Leer los datos de la solicitud
-       
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
+      
         
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
@@ -733,22 +732,22 @@ Flight::route('GET /getOneCurrency/@currencyId', function ($currencyId) {
 });
 
 
-Flight::route('GET /getCurrencyList/', function () {
+Flight::route('GET /getCurrencyList/@headerslink', function ($headerslink) {
     
+   
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
-
-    $headers = getallheaders();
     
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apiKey) && !empty($xApiKey)) {
         // Leer los datos de la solicitud
        
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
+      
         
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
@@ -824,22 +823,22 @@ Flight::route('GET /getCurrencyList/', function () {
 
 
 
-Flight::route('GET /getOneLogsBySuperAdmin/@profileId', function ($profileId) {
+Flight::route('GET /getOneLogsBySuperAdmin/@headerslink/@profileId', function ($headerslink,$profileId) {
     
+   
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
-
-    $headers = getallheaders();
     
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apiKey) && !empty($xApiKey)) {
         // Leer los datos de la solicitud
        
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
+        
         
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
@@ -916,15 +915,19 @@ Flight::route('GET /getOneLogsBySuperAdmin/@profileId', function ($profileId) {
 
 
 
-Flight::route('POST /postLogInfoModels', function () {
+Flight::route('POST /postLogInfoModels/@headerslink', function ($headerslink) {
+    
+   
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-    // Leer los encabezados
-    $headers = getallheaders();
     
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apiKey) && !empty($xApiKey)) {
         // Leer los datos de la solicitud
         $dta = [
             
@@ -937,9 +940,6 @@ Flight::route('POST /postLogInfoModels', function () {
 
 
 
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
         
 
         $sub_domaincon=new model_dom();
