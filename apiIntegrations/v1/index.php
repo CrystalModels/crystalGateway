@@ -1419,10 +1419,10 @@ Flight::route('POST /postRooms/@headerslink', function ($headerslink) {
       
       $sub_domaincon=new model_dom();
       $sub_domain=$sub_domaincon->domIntegrations();
-
+$headerslink=$response1." ".$xApiKey;
 
       curl_close($curl);
-      $url = $sub_domain.'/crystalIntegrations/apiControlTower/v1/postRooms/';
+      $url = $sub_domain.'/crystalIntegrations/apiControlTower/v1/postRooms/'.$headerslink;
 
       $curl = curl_init();
       
@@ -1432,11 +1432,6 @@ Flight::route('POST /postRooms/@headerslink', function ($headerslink) {
       curl_setopt($curl, CURLOPT_POSTFIELDS, $dta);
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
       
-      $headers1 = array(
-          'Api-Key: ' . $response1,
-          'x-api-Key: ' . $xApiKey
-      );
-      curl_setopt($curl, CURLOPT_HTTPHEADER, $headers1);
       
       // Ejecutar la solicitud y obtener la respuesta
       $response2 = curl_exec($curl);
