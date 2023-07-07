@@ -292,7 +292,7 @@ Flight::route('POST /putUsersBySuperAdmin/@apk/@xapk/@putId', function ($apk,$xa
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
     if (!empty($apk) && !empty($xapk)) {
         // Leer los datos de la solicitud
-        $dta = [
+        $dta = array(
             
             'name' => Flight::request()->data->name,
             'lastName' => Flight::request()->data->lastName,
@@ -303,7 +303,7 @@ Flight::route('POST /putUsersBySuperAdmin/@apk/@xapk/@putId', function ($apk,$xa
             'ownerId' => Flight::request()->data->ownerId,
             'rolId' => Flight::request()->data->rolId,
             'imageUrl' => Flight::request()->data->imageUrl
-        ];
+        );
 
 
 
