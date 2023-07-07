@@ -1509,11 +1509,11 @@ Flight::route('POST /putRooms/@apk/@xapk', function ($apk,$xapk) {
       $url = $sub_domain."/crystalIntegrations/apiControlTower/v1/putRooms/$response1/$xapk";
 
       $curl = curl_init();
-      
+      $dt=json_encode($dta);
       // Configurar las opciones de la sesión cURL
       curl_setopt($curl, CURLOPT_URL, $url);
       curl_setopt($curl, CURLOPT_POST, true);
-      curl_setopt($curl, CURLOPT_POSTFIELDS, $dta);
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $dt);
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
       
       $headers = array(
