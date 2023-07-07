@@ -1053,36 +1053,29 @@ echo $response2;
 
 
 
-Flight::route('POST /putUsersRolBySuperAdmin/', function () {
+Flight::route('POST /putUsersRolBySuperAdmin/@apk/@xapk', function ($apk,$xapk) {
+  
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-    // Leer los encabezados
-    $headers = getallheaders();
     
+   
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apk) && !empty($xapk)) {
         // Leer los datos de la solicitud
-        $dta = [
+        $dta = array(
             
             'rolId' => Flight::request()->data->rolId,
             'putId' => Flight::request()->data->putId
-        ];
-
-
-
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
-        
+        );
 
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
         $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
       
         $data = array(
-          'ApiKey' =>$apiKey, 
-          'xapiKey' => $xApiKey
+          'ApiKey' =>$apk, 
+          'xapiKey' => $xapk
           
           );
       $curl = curl_init();
@@ -1101,7 +1094,7 @@ Flight::route('POST /putUsersRolBySuperAdmin/', function () {
 
 
       curl_close($curl);
-      $url = $sub_domain.'/crystalCore/apiUsers/v1/putUsersRolBySuperAdmin/';
+      $url = $sub_domain."/crystalCore/apiUsers/v1/putUsersRolBySuperAdmin/$response1/$xapk";
 
       $curl = curl_init();
       
@@ -1110,12 +1103,11 @@ Flight::route('POST /putUsersRolBySuperAdmin/', function () {
       curl_setopt($curl, CURLOPT_POST, true);
       curl_setopt($curl, CURLOPT_POSTFIELDS, $dta);
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-      
-      $headers1 = array(
-          'Api-Key: ' . $response1,
-          'x-api-Key: ' . $xApiKey
-      );
-      curl_setopt($curl, CURLOPT_HTTPHEADER, $headers1);
+ 
+      $headers = array(
+        'Content-Type: application/json'
+    );
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
       
       // Ejecutar la solicitud y obtener la respuesta
       $response2 = curl_exec($curl);
