@@ -297,6 +297,9 @@ Flight::route('POST /putUsersBySuperAdmin/@apk/@xapk/@putId', function ($apk,$xa
             'name' => Flight::request()->data->name,
             'lastName' => Flight::request()->data->lastName,
             'personalMail' => Flight::request()->data->personalMail,
+            'companyMail' => Flight::request()->data->companyMail,
+            'internalMail' => Flight::request()->data->internalMail,
+            
             'imageUrl' => Flight::request()->data->imageUrl
         );
 
