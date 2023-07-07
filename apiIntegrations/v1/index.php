@@ -1423,8 +1423,8 @@ $dt=json_encode($dta);
       $sub_domaincon=new model_dom();
       $sub_domain=$sub_domaincon->domIntegrations();
 $headerslink1=$response1." ".$xApiKey;
-     $url1 = $sub_domain."/crystalIntegrations/apiControlTower/v1/postRooms/$headerslink1";
-     //$url1 = $sub_domain."/crystalIntegrations/apiControlTower/v1/postRooms1/123/'.$.'";
+     //$url1 = $sub_domain."/crystalIntegrations/apiControlTower/v1/postRooms/$headerslink1";
+     $url1 = $sub_domain."/crystalIntegrations/apiControlTower/v1/postRooms1/$xApiKey";
  
       $curl1 = curl_init();
       
