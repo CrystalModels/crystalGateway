@@ -198,7 +198,7 @@ Flight::route('POST /putUsersByAdmin/@profileId/@putId', function ($profileId,$p
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
     if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
         // Leer los datos de la solicitud
-        $dta = [
+        $dta = array(
             
             'name' => Flight::request()->data->name,
             'lastName' => Flight::request()->data->lastName,
@@ -209,7 +209,7 @@ Flight::route('POST /putUsersByAdmin/@profileId/@putId', function ($profileId,$p
             'ownerId' => Flight::request()->data->ownerId,
             'rolId' => Flight::request()->data->rolId,
             'imageUrl' => Flight::request()->data->imageUrl
-        ];
+        );
 
 
 
@@ -297,11 +297,6 @@ Flight::route('POST /putUsersBySuperAdmin/@apk/@xapk/@putId', function ($apk,$xa
             'name' => Flight::request()->data->name,
             'lastName' => Flight::request()->data->lastName,
             'personalMail' => Flight::request()->data->personalMail,
-            'companyMail' => Flight::request()->data->companyMail,
-           
-            
-            'ownerId' => Flight::request()->data->ownerId,
-            'rolId' => Flight::request()->data->rolId,
             'imageUrl' => Flight::request()->data->imageUrl
         );
 
