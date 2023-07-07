@@ -1469,12 +1469,12 @@ Flight::route('POST /putRooms/@apk/@xapk', function ($apk,$xapk) {
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
     if (!empty($apk) && !empty($xapk)) {
         // Leer los datos de la solicitud
-        $dta = [
+        $dta = array(
             
             'name' => Flight::request()->data->name,
             'comments' => Flight::request()->data->comments,
             'roomId' => Flight::request()->data->roomId
-        ];
+        );
 
 
 
