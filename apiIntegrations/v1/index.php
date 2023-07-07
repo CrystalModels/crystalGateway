@@ -1590,7 +1590,7 @@ Flight::route('POST /putRoomsStatus/@apk/@xapk', function ($apk,$xapk) {
 
 
       curl_close($curl);
-      $url = $sub_domain."/crystalIntegrations/apiControlTower/v1/putRooms/$response1/$xapk";
+      $url = $sub_domain."/crystalIntegrations/apiControlTower/v1/putRoomsStatus/$response1/$xapk";
 
       $curl = curl_init();
       
