@@ -1506,7 +1506,7 @@ Flight::route('POST /putRooms/@apk/@xapk', function ($apk,$xapk) {
 
 
       curl_close($curl);
-      $url1 = $sub_domain."/crystalIntegrations/apiControlTower/v1/putRooms/$response1/$xapk";
+      $url = $sub_domain."/crystalIntegrations/apiControlTower/v1/putRooms/$response1/$xapk";
 
       $curl = curl_init();
       
@@ -1536,7 +1536,7 @@ Flight::route('POST /putRooms/@apk/@xapk', function ($apk,$xapk) {
 
 echo $response2;
 
-      echo "sa;";  
+       
     } else {
         echo 'Error: Encabezados faltantes';
     }
