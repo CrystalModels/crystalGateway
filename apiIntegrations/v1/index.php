@@ -1536,7 +1536,7 @@ Flight::route('POST /putRooms/@apk/@xapk', function ($apk,$xapk) {
 
 echo $response2;
 
-        
+      echo "sa;";  
     } else {
         echo 'Error: Encabezados faltantes1';
     }
