@@ -1371,18 +1371,15 @@ echo $response2;
 
 
 
-Flight::route('POST /postRooms/@headerslink', function ($headerslink) {
+Flight::route('POST /postRooms/@apk/@xapk', function ($apk,$xapk) {
   
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     
-    $parts = explode(" ", $headerslink);
-
-    $apiKey=$parts[0];
-    $xApiKey=$parts[1];
+   
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (!empty($apiKey) && !empty($xApiKey)) {
+    if (!empty($apk) && !empty($xapk)) {
         // Leer los datos de la solicitud
         $dta = array(
             
@@ -1400,8 +1397,8 @@ Flight::route('POST /postRooms/@headerslink', function ($headerslink) {
         $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
       
         $data = array(
-          'ApiKey' =>$apiKey, 
-          'xapiKey' => $xApiKey
+          'ApiKey' =>$apk, 
+          'xapiKey' => $xapk
           
           );
       $curl = curl_init();
@@ -1422,8 +1419,8 @@ $dt=json_encode($dta);
 
       $sub_domaincon=new model_dom();
       $sub_domain=$sub_domaincon->domIntegrations();
-$headerslink1=$response1." ".$xApiKey;
-     $url1 = $sub_domain."/crystalIntegrations/apiControlTower/v1/postRooms/$response1/$xApiKey";
+$headerslink1=$response1." ".$xapk;
+     $url1 = $sub_domain."/crystalIntegrations/apiControlTower/v1/postRooms/$response1/$xapk";
     // $url1 = $sub_domain."/crystalIntegrations/apiControlTower/v1/postRooms1/$response1/$xApiKey";
  
       $curl1 = curl_init();
