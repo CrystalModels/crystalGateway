@@ -1453,7 +1453,7 @@ $headerslink1=$response1." ".$xapk;
 echo $response2;
         
     } else {
-        echo 'Error: Encabezados faltantes1';
+        echo 'Error: Encabezados faltantes';
     }
 });
 
@@ -1539,7 +1539,7 @@ echo $response2;
 
         
     } else {
-        echo 'Error: Encabezados faltantes';
+        echo 'Error: Encabezados faltantes1';
     }
 });
 
