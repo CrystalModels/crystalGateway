@@ -1543,37 +1543,33 @@ echo $response2;
 });
 
 
-Flight::route('POST /putRoomsStatus', function () {
+
+Flight::route('POST /putRoomsStatus/@apk/@xapk', function ($apk,$xapk) {
+   
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-    // Leer los encabezados
-    $headers = getallheaders();
     
+   
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apk) && !empty($xapk)) {
         // Leer los datos de la solicitud
-        $dta = [
-            
+        $dta = array(
             
             'value' => Flight::request()->data->value,
             'roomId' => Flight::request()->data->roomId
-        ];
+        );
 
 
 
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
-        
 
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
         $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
       
         $data = array(
-          'ApiKey' =>$apiKey, 
-          'xapiKey' => $xApiKey
+            'ApiKey' =>$apk, 
+            'xapiKey' => $xapk
           
           );
       $curl = curl_init();
@@ -1606,7 +1602,7 @@ Flight::route('POST /putRoomsStatus', function () {
       
       $headers1 = array(
           'Api-Key: ' . $response1,
-          'x-api-Key: ' . $xApiKey
+          'x-api-Key: ' . $xapk
       );
       curl_setopt($curl, CURLOPT_HTTPHEADER, $headers1);
       
@@ -1625,11 +1621,13 @@ Flight::route('POST /putRoomsStatus', function () {
 
 echo $response2;
 
-        
+
+       
     } else {
         echo 'Error: Encabezados faltantes';
     }
 });
+
 
 
 
