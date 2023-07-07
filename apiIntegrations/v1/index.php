@@ -1516,11 +1516,10 @@ Flight::route('POST /putRooms/@apk/@xapk', function ($apk,$xapk) {
       curl_setopt($curl, CURLOPT_POSTFIELDS, $dta);
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
       
-      $headers1 = array(
-          'Api-Key: ' . $response1,
-          'x-api-Key: ' . $xapk
-      );
-      curl_setopt($curl, CURLOPT_HTTPHEADER, $headers1);
+      $headers = array(
+        'Content-Type: application/json'
+    );
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
       
       // Ejecutar la solicitud y obtener la respuesta
       $response2 = curl_exec($curl);
