@@ -1757,8 +1757,8 @@ Flight::route('POST /postCurrency/@apk/@xapk', function ($apk,$xapk) {
 
 
       curl_close($curl);
-      $url = $sub_domain.'/crystalIntegrations/apiControlTower/v1/postCurrency/';
-
+      $url1 = $sub_domain."/crystalIntegrations/apiControlTower/v1/postCurrency/$response1/$xapk";
+   
       $curl = curl_init();
       
       // Configurar las opciones de la sesión cURL
