@@ -1259,7 +1259,7 @@ Flight::route('POST /putPageStatus/@apk/@xapk', function ($apk,$xapk) {
         // Realizar acciones basadas en los valores de los encabezados
   //echo "true";
 
-echo $response2;
+echo $response1;
 
         
     } else {
