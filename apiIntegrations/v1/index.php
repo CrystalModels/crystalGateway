@@ -1711,6 +1711,7 @@ echo $response2;
 
 
 
+
 Flight::route('POST /postCurrency/@apk/@xapk', function ($apk,$xapk) {
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
@@ -1719,6 +1720,7 @@ Flight::route('POST /postCurrency/@apk/@xapk', function ($apk,$xapk) {
    
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
     if (!empty($apk) && !empty($xapk)) {
+        // Leer los datos de la solicitud
         $dta = array(
             
             'name' => Flight::request()->data->name,
@@ -1727,8 +1729,6 @@ Flight::route('POST /postCurrency/@apk/@xapk', function ($apk,$xapk) {
             'comparative' => Flight::request()->data->comparative,
             'symbol' => Flight::request()->data->symbol
         );
-
-
 
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
@@ -1739,6 +1739,9 @@ Flight::route('POST /postCurrency/@apk/@xapk', function ($apk,$xapk) {
           'xapiKey' => $xapk
           
           );
+
+
+
       $curl = curl_init();
       
       // Configurar las opciones de la sesión cURL
@@ -1752,41 +1755,43 @@ Flight::route('POST /postCurrency/@apk/@xapk', function ($apk,$xapk) {
       $response1 = curl_exec($curl);
 
       
+$dt=json_encode($dta);
+      curl_close($curl);
+
       $sub_domaincon=new model_dom();
       $sub_domain=$sub_domaincon->domIntegrations();
 
+     $url1 = $sub_domain."/crystalIntegrations/apiControlTower/v1/postCurrency/$response1/$xapk";
+    // $url1 = $sub_domain."/crystalIntegrations/apiControlTower/v1/postRooms1/$response1/$xApiKey";
+ 
+      $curl1 = curl_init();
+      
+      curl_setopt($curl1, CURLOPT_URL, $url1);
+      curl_setopt($curl1, CURLOPT_POST, true);
+      curl_setopt($curl1, CURLOPT_POSTFIELDS, $dt);
+      curl_setopt($curl1, CURLOPT_RETURNTRANSFER, true);
 
-      curl_close($curl);
-      $url1 = $sub_domain."/crystalIntegrations/apiControlTower/v1/postCurrency/$response1/$xapk";
-   
-      $curl = curl_init();
-      
-      // Configurar las opciones de la sesión cURL
-      curl_setopt($curl, CURLOPT_URL, $url);
-      curl_setopt($curl, CURLOPT_POST, true);
-      curl_setopt($curl, CURLOPT_POSTFIELDS, $dta);
-      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-      
       // Establecer el encabezado con el API key
       $headers = array(
-        'Content-Type: application/json'
-    );
-    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+          'Content-Type: application/json'
+      );
+      curl_setopt($curl1, CURLOPT_HTTPHEADER, $headers);
+      
+      
       // Ejecutar la solicitud y obtener la respuesta
-      $response2 = curl_exec($curl);
+      $response2 = curl_exec($curl1);
       
 
     //echo json_encode($headers);
 
 //echo $response2;
-    curl_close($curl);
+    curl_close($curl1);
 
-    //echo json_encode($headers);
+    //echo json_encode($dta);
         // Realizar acciones basadas en los valores de los encabezados
   //echo "true";
 
 echo $response2;
-
         
     } else {
         echo 'Error: Encabezados faltantes';
