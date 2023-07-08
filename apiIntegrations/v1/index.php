@@ -1387,6 +1387,9 @@ Flight::route('POST /postRooms/@apk/@xapk', function ($apk,$xapk) {
           'xapiKey' => $xapk
           
           );
+
+
+          
       $curl = curl_init();
       
       // Configurar las opciones de la sesión cURL
