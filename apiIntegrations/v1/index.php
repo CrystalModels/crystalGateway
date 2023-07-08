@@ -1031,11 +1031,12 @@ Flight::route('POST /postPages/@apk/@xapk', function ($apk,$xapk) {
         $sub_domain=$sub_domaincon->dom();
         $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
       
+       
         $data = array(
-          'ApiKey' =>$apk, 
-          'xapiKey' => $xapk
-          
-          );
+            'ApiKey' =>$apk, 
+            'xapiKey' => $xapk
+            
+            );
       $curl = curl_init();
       
       // Configurar las opciones de la sesión cURL
@@ -1121,10 +1122,10 @@ Flight::route('POST /putPages/@apk/@xapk', function ($apk,$xapk) {
         $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
       
         $data = array(
-          'ApiKey' =>$apk, 
-          'xapiKey' => $xapk
-          
-          );
+            'ApiKey' =>$apk, 
+            'xapiKey' => $xapk
+            
+            );
       $curl = curl_init();
       
       // Configurar las opciones de la sesión cURL
@@ -1205,11 +1206,12 @@ Flight::route('POST /putPageStatus/@apk/@xapk', function ($apk,$xapk) {
         $sub_domain=$sub_domaincon->dom();
         $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
       
+      
         $data = array(
-          'ApiKey' =>$apk, 
-          'xapiKey' => $xapk
-          
-          );
+            'ApiKey' =>$apk, 
+            'xapiKey' => $xapk
+            
+            );
       $curl = curl_init();
       
       // Configurar las opciones de la sesión cURL
