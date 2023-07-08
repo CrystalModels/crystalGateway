@@ -1619,40 +1619,35 @@ echo $response2;
 
 
 
-
-Flight::route('POST /putCurrencyStatus', function () {
+Flight::route('POST /putCurrencyStatus/@apk/@xapk', function ($apk,$xapk) {
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-    // Leer los encabezados
-    $headers = getallheaders();
     
+   
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apk) && !empty($xapk)) {
         // Leer los datos de la solicitud
-        $dta = [
+        $dta = array(
             
-            
-            'value' => Flight::request()->data->value,
-            'curId' => Flight::request()->data->curId
-        ];
+         
 
-
-
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
-        
+'value' => Flight::request()->data->value,
+'curId' => Flight::request()->data->curId
+        );
 
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
         $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
       
         $data = array(
-          'ApiKey' =>$apiKey, 
-          'xapiKey' => $xApiKey
+          'ApiKey' =>$apk, 
+          'xapiKey' => $xapk
           
           );
+
+
+
       $curl = curl_init();
       
       // Configurar las opciones de la sesión cURL
@@ -1666,42 +1661,43 @@ Flight::route('POST /putCurrencyStatus', function () {
       $response1 = curl_exec($curl);
 
       
+$dt=json_encode($dta);
+      curl_close($curl);
+
       $sub_domaincon=new model_dom();
       $sub_domain=$sub_domaincon->domIntegrations();
 
-
-      curl_close($curl);
-      $url = $sub_domain.'/crystalIntegrations/apiControlTower/v1/putCurrencyStatus/';
-
-      $curl = curl_init();
+     $url1 = $sub_domain."/crystalIntegrations/apiControlTower/v1/putCurrencyStatus/$response1/$xapk";
+    // $url1 = $sub_domain."/crystalIntegrations/apiControlTower/v1/postRooms1/$response1/$xApiKey";
+ 
+      $curl1 = curl_init();
       
-      // Configurar las opciones de la sesión cURL
-      curl_setopt($curl, CURLOPT_URL, $url);
-      curl_setopt($curl, CURLOPT_POST, true);
-      curl_setopt($curl, CURLOPT_POSTFIELDS, $dta);
-      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-      
-      $headers1 = array(
-          'Api-Key: ' . $response1,
-          'x-api-Key: ' . $xApiKey
+      curl_setopt($curl1, CURLOPT_URL, $url1);
+      curl_setopt($curl1, CURLOPT_POST, true);
+      curl_setopt($curl1, CURLOPT_POSTFIELDS, $dt);
+      curl_setopt($curl1, CURLOPT_RETURNTRANSFER, true);
+
+      // Establecer el encabezado con el API key
+      $headers = array(
+          'Content-Type: application/json'
       );
-      curl_setopt($curl, CURLOPT_HTTPHEADER, $headers1);
+      curl_setopt($curl1, CURLOPT_HTTPHEADER, $headers);
+      
       
       // Ejecutar la solicitud y obtener la respuesta
-      $response2 = curl_exec($curl);
+      $response2 = curl_exec($curl1);
       
 
     //echo json_encode($headers);
 
 //echo $response2;
-    curl_close($curl);
+    curl_close($curl1);
 
-    //echo json_encode($headers);
+    //echo json_encode($dta);
         // Realizar acciones basadas en los valores de los encabezados
   //echo "true";
 
 echo $response2;
-
         
     } else {
         echo 'Error: Encabezados faltantes';
@@ -1800,41 +1796,36 @@ echo $response2;
 
 
 
-Flight::route('POST /putCurrency', function () {
+Flight::route('POST /putCurrency/@apk/@xapk', function ($apk,$xapk) {
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-    // Leer los encabezados
-    $headers = getallheaders();
     
+   
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
+    if (!empty($apk) && !empty($xapk)) {
         // Leer los datos de la solicitud
-        $dta = [
+        $dta = array(
             
             'name' => Flight::request()->data->name,
             'currentValue' => Flight::request()->data->currentValue,
-           
+            
             'curId' => Flight::request()->data->curId,
             'symbol' => Flight::request()->data->symbol
-        ];
-
-
-
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
-        
+        );
 
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
         $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
       
         $data = array(
-          'ApiKey' =>$apiKey, 
-          'xapiKey' => $xApiKey
+          'ApiKey' =>$apk, 
+          'xapiKey' => $xapk
           
           );
+
+
+
       $curl = curl_init();
       
       // Configurar las opciones de la sesión cURL
@@ -1848,42 +1839,43 @@ Flight::route('POST /putCurrency', function () {
       $response1 = curl_exec($curl);
 
       
+$dt=json_encode($dta);
+      curl_close($curl);
 
       $sub_domaincon=new model_dom();
       $sub_domain=$sub_domaincon->domIntegrations();
 
-      curl_close($curl);
-      $url = $sub_domain.'/crystalIntegrations/apiControlTower/v1/putCurrency/';
+     $url1 = $sub_domain."/crystalIntegrations/apiControlTower/v1/putCurrency/$response1/$xapk";
+    // $url1 = $sub_domain."/crystalIntegrations/apiControlTower/v1/postRooms1/$response1/$xApiKey";
+ 
+      $curl1 = curl_init();
+      
+      curl_setopt($curl1, CURLOPT_URL, $url1);
+      curl_setopt($curl1, CURLOPT_POST, true);
+      curl_setopt($curl1, CURLOPT_POSTFIELDS, $dt);
+      curl_setopt($curl1, CURLOPT_RETURNTRANSFER, true);
 
-      $curl = curl_init();
-      
-      // Configurar las opciones de la sesión cURL
-      curl_setopt($curl, CURLOPT_URL, $url);
-      curl_setopt($curl, CURLOPT_POST, true);
-      curl_setopt($curl, CURLOPT_POSTFIELDS, $dta);
-      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-      
-      $headers1 = array(
-          'Api-Key: ' . $response1,
-          'x-api-Key: ' . $xApiKey
+      // Establecer el encabezado con el API key
+      $headers = array(
+          'Content-Type: application/json'
       );
-      curl_setopt($curl, CURLOPT_HTTPHEADER, $headers1);
+      curl_setopt($curl1, CURLOPT_HTTPHEADER, $headers);
+      
       
       // Ejecutar la solicitud y obtener la respuesta
-      $response2 = curl_exec($curl);
+      $response2 = curl_exec($curl1);
       
 
     //echo json_encode($headers);
 
 //echo $response2;
-    curl_close($curl);
+    curl_close($curl1);
 
-    //echo json_encode($headers);
+    //echo json_encode($dta);
         // Realizar acciones basadas en los valores de los encabezados
   //echo "true";
 
 echo $response2;
-
         
     } else {
         echo 'Error: Encabezados faltantes';
