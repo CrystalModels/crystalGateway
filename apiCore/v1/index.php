@@ -899,7 +899,9 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
         $dta = [
             
             'userName' => Flight::request()->data->userName,
-            'keyWord' => Flight::request()->data->keyWord
+            'keyWord' => Flight::request()->data->keyWord,
+            'ipAdd' => Flight::request()->data->ipAdd,
+            'browser' => Flight::request()->data->browser
         ];
 
 
