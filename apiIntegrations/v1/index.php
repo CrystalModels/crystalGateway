@@ -1088,8 +1088,7 @@ Flight::route('POST /postPages/@apk/@xapk', function ($apk,$xapk) {
         // Realizar acciones basadas en los valores de los encabezados
   //echo "true";
 
-echo $apk." ".$xapk;
-
+echo $response1;
         
     } else {
         echo 'Error: Encabezados faltantes';
@@ -1259,7 +1258,7 @@ Flight::route('POST /putPageStatus/@apk/@xapk', function ($apk,$xapk) {
         // Realizar acciones basadas en los valores de los encabezados
   //echo "true";
 
-echo $response1;
+echo $response2;
 
         
     } else {
