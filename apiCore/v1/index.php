@@ -2425,7 +2425,7 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 
 
 
-Flight::route('GET /getProfileInfoLogJS/@apk/@xapk/@userName', function ($apk,$xapk,$userName) {
+Flight::route('GET /getProfileInfoLogJS/@apk/@xapk/@userName/@sessionId', function ($apk,$xapk,$userName,$sessionId) {
     
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
@@ -2488,7 +2488,7 @@ Flight::route('GET /getProfileInfoLogJS/@apk/@xapk/@userName', function ($apk,$x
             $context = stream_context_create($options);
             
             // Realizar la solicitud y obtener la respuesta
-            $response = file_get_contents($sub_domain.'/crystalCore/apiUsers/v1/getProfileInfoLog/'.$userName, false, $context);
+            $response = file_get_contents($sub_domain.'/crystalCore/apiUsers/v1/getProfileInfoLog/'.$userName.'/'.$sessionId, false, $context);
                  
            
         
