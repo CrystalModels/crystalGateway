@@ -1031,12 +1031,14 @@ Flight::route('POST /postPages/@apk/@xapk', function ($apk,$xapk) {
         $sub_domain=$sub_domaincon->dom();
         $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
       
-       
         $data = array(
-            'ApiKey' =>$apk, 
-            'xapiKey' => $xapk
-            
-            );
+          'ApiKey' =>$apk, 
+          'xapiKey' => $xapk
+          
+          );
+
+
+
       $curl = curl_init();
       
       // Configurar las opciones de la sesión cURL
@@ -1050,8 +1052,7 @@ Flight::route('POST /postPages/@apk/@xapk', function ($apk,$xapk) {
       $response1 = curl_exec($curl);
 
       
-      $dt=json_encode($dta);
-
+$dt=json_encode($dta);
       curl_close($curl);
 
       $sub_domaincon=new model_dom();
