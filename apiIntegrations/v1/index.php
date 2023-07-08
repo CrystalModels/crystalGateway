@@ -1088,7 +1088,7 @@ Flight::route('POST /postPages/@apk/@xapk', function ($apk,$xapk) {
         // Realizar acciones basadas en los valores de los encabezados
   //echo "true";
 
-echo $response1;
+echo $response2;
         
     } else {
         echo 'Error: Encabezados faltantes';
@@ -1389,7 +1389,7 @@ Flight::route('POST /postRooms/@apk/@xapk', function ($apk,$xapk) {
           );
 
 
-          
+
       $curl = curl_init();
       
       // Configurar las opciones de la sesión cURL
