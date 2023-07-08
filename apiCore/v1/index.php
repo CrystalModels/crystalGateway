@@ -2332,7 +2332,7 @@ Flight::route('GET /getOneUserByAdmin/@headerslink/@adminId/@profileId', functio
 
 
 
-Flight::route('GET /getProfileInfoLog/@userName', function ($userName) {
+Flight::route('GET /getProfileInfoLog/@userName/@sessionId', function ($userName,$sessionId) {
     
     header("Access-Control-Allow-Origin: *");
 
@@ -2399,7 +2399,7 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
             $context = stream_context_create($options);
             
             // Realizar la solicitud y obtener la respuesta
-            $response = file_get_contents($sub_domain.'/crystalCore/apiUsers/v1/getProfileInfoLog/'.$userName, false, $context);
+            $response = file_get_contents($sub_domain.'/crystalCore/apiUsers/v1/getProfileInfoLog/'.$userName.'/'.$sessionId, false, $context);
                  
            
         
