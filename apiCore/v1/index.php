@@ -889,9 +889,9 @@ Flight::route('POST /validateLogIn/@headerslink', function ($headerslink) {
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     
-    $parts = explode(" ", $headerslink);
+   
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (!empty($parts[1])) {
+    if (!empty($headerslink)) {
     
 
 // Crear el array con los valores correspondientes
@@ -916,7 +916,7 @@ Flight::route('POST /validateLogIn/@headerslink', function ($headerslink) {
       
         $data = array(
           
-          'xapiKey' => $parts[1]
+          'xapiKey' => $headerslink
           
           );
       $curl = curl_init();
@@ -935,7 +935,7 @@ Flight::route('POST /validateLogIn/@headerslink', function ($headerslink) {
 
 
       curl_close($curl);
-      $url = $sub_domain.'/crystalCore/apiUsers/v1/validateLogIn/'.$parts[1];
+      $url = $sub_domain.'/crystalCore/apiUsers/v1/validateLogIn/'.$headerslink;
 
       $curl = curl_init();
       
