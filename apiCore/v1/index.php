@@ -712,15 +712,16 @@ echo $response2;
 
 
 
-Flight::route('POST /forgotKeyword/', function () {
+Flight::route('POST /forgotKeyword/@headerslink', function ($headerslink) {
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-    // Leer los encabezados
-    $headers = getallheaders();
     
+   
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['x-api-Key'])) {
+    if (!empty($headerslink)) {
+    
+
         // Leer los datos de la solicitud
         $dta = [
             
@@ -728,19 +729,15 @@ Flight::route('POST /forgotKeyword/', function () {
         ];
 
 
-
-        // Acceder a los encabezados
-        
-        $xApiKey = $headers['x-api-Key'];
         
 
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
-        $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
+        $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyLog/';
       
         $data = array(
           
-          'xapiKey' => $xApiKey
+          'xapiKey' => $headerslink
           
           );
       $curl = curl_init();
@@ -759,7 +756,7 @@ Flight::route('POST /forgotKeyword/', function () {
 
 
       curl_close($curl);
-      $url = $sub_domain.'/crystalCore/apiUsers/v1/forgotKeyword/';
+      $url = $sub_domain.'/crystalCore/apiUsers/v1/forgotKeyword/'.$headerslink;
 
       $curl = curl_init();
       
@@ -769,10 +766,6 @@ Flight::route('POST /forgotKeyword/', function () {
       curl_setopt($curl, CURLOPT_POSTFIELDS, $dta);
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
       
-      $headers1 = array(
-          'x-api-Key: ' . $xApiKey
-      );
-      curl_setopt($curl, CURLOPT_HTTPHEADER, $headers1);
       
       // Ejecutar la solicitud y obtener la respuesta
       $response2 = curl_exec($curl);
@@ -797,15 +790,14 @@ echo $response2;
 
 
 
-Flight::route('POST /forgotKeywordValidate/', function () {
+Flight::route('POST /forgotKeywordValidate/@headerslink', function ($headerslink) {
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-    // Leer los encabezados
-    $headers = getallheaders();
     
+   
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['x-api-Key'])) {
+    if (!empty($headerslink)) {
         // Leer los datos de la solicitud
         $dta = [
             
@@ -815,19 +807,15 @@ Flight::route('POST /forgotKeywordValidate/', function () {
         ];
 
 
-
         // Acceder a los encabezados
-        
-        $xApiKey = $headers['x-api-Key'];
-        
-
+       
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
-        $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
+        $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyLog/';
       
         $data = array(
           
-          'xapiKey' => $xApiKey
+          'xapiKey' => $headerslink
           
           );
       $curl = curl_init();
@@ -846,7 +834,7 @@ Flight::route('POST /forgotKeywordValidate/', function () {
 
 
       curl_close($curl);
-      $url = $sub_domain.'/crystalCore/apiUsers/v1/forgotKeywordValidate/';
+      $url = $sub_domain.'/crystalCore/apiUsers/v1/forgotKeywordValidate/'.$headerslink;
 
       $curl = curl_init();
       
@@ -856,11 +844,7 @@ Flight::route('POST /forgotKeywordValidate/', function () {
       curl_setopt($curl, CURLOPT_POSTFIELDS, $dta);
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
       
-      $headers1 = array(
-          'x-api-Key: ' . $xApiKey
-      );
-      curl_setopt($curl, CURLOPT_HTTPHEADER, $headers1);
-      
+     
       // Ejecutar la solicitud y obtener la respuesta
       $response2 = curl_exec($curl);
       
