@@ -2585,12 +2585,10 @@ Flight::route('GET /getSessions/@headerslink/@userName', function ($headerslink,
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     
-    $parts = explode(" ", $headerslink);
+    
 
-    $apiKey=$parts[0];
-    $xApiKey=$parts[1];
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (!empty($apiKey) && !empty($xApiKey)) {
+    if (!empty($headerslink)) {
         // Leer los datos de la solicitud
        
         // Acceder a los encabezados
@@ -2601,7 +2599,7 @@ Flight::route('GET /getSessions/@headerslink/@userName', function ($headerslink,
       
         $data = array(
           
-          'xapiKey' => $xApiKey
+          'xapiKey' => $headerslink
           
           );
       $curl = curl_init();
@@ -2626,10 +2624,10 @@ Flight::route('GET /getSessions/@headerslink/@userName', function ($headerslink,
 
 
             $sub_domaincons = new model_dom;
-            $sub_domain = $sub_domaincons->domIntegrations();
+            $sub_domain = $sub_domaincons->dom();
             
            
-            $response = file_get_contents($sub_domain.'/crystalCore/apiUsers/v1/getSessions/'.$xApiKey.'/'.$userName, false);
+            $response = file_get_contents($sub_domain.'/crystalCore/apiUsers/v1/getSessions/'.$headerslink.'/'.$userName, false);
       
             // Realizar la solicitud y obtener la respuesta
                  
