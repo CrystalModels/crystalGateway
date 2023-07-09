@@ -935,7 +935,7 @@ Flight::route('POST /validateLogIn/@headerslink', function ($headerslink) {
 
 
       curl_close($curl);
-      $url = $sub_domain.'/crystalCore/apiUsers/v1/validateLogIn/'.$headerslink;
+      $url = $sub_domain.'/crystalCore/apiUsers/v1/validateLogIn/'.$parts[1];
 
       $curl = curl_init();
       
