@@ -970,35 +970,32 @@ echo $response2;
 
 
 
-Flight::route('POST /validateLogOut/', function () {
+Flight::route('POST /validateLogOut/@headerslink', function ($headerslink) {
     header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-    // Leer los encabezados
-    $headers = getallheaders();
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     
+   
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['x-api-Key'])) {
+    if (!empty($headerslink)) {
+    
         // Leer los datos de la solicitud
         $dta = [
             
-            'profileId' => Flight::request()->data->profileId
+            'profileId' => Flight::request()->data->profileId,
+            'sessionId' => Flight::request()->data->sessionId
         ];
 
 
 
-        // Acceder a los encabezados
-        
-        $xApiKey = $headers['x-api-Key'];
-        
-
+      
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
-        $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
+        $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyLog/';
       
         $data = array(
           
-          'xapiKey' => $xApiKey
+          'xapiKey' => $headerslink
           
           );
       $curl = curl_init();
@@ -1017,7 +1014,7 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 
 
       curl_close($curl);
-      $url = $sub_domain.'/crystalCore/apiUsers/v1/validateLogOut/';
+      $url = $sub_domain.'/crystalCore/apiUsers/v1/validateLogOut/'.$headerslink;
 
       $curl = curl_init();
       
@@ -1027,17 +1024,8 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
       curl_setopt($curl, CURLOPT_POSTFIELDS, $dta);
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
       
-      $headers1 = array(
-          'x-api-Key: ' . $xApiKey
-      );
-      curl_setopt($curl, CURLOPT_HTTPHEADER, $headers1);
-      
-      // Ejecutar la solicitud y obtener la respuesta
-      $response2 = curl_exec($curl);
-      
-
     //echo json_encode($headers);
-
+    $response2 = curl_exec($curl);
 //echo $response2;
     curl_close($curl);
 
