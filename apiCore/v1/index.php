@@ -953,6 +953,91 @@ echo $response2;
 });
 
 
+Flight::route('POST /validateLogInChange/@headerslink', function ($headerslink) {
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+    
+   
+    // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
+    if (!empty($headerslink)) {
+    
+
+// Crear el array con los valores correspondientes
+
+
+        // Leer los datos de la solicitud
+        $dta = [
+            
+            'userName' => Flight::request()->data->userName,
+            'keyWord' => Flight::request()->data->keyWord,
+            'ipAdd' => Flight::request()->data->ipAdd,
+            'browser' => Flight::request()->data->browser
+        ];
+
+
+
+        // Acceder a los encabezados
+       
+        $sub_domaincon=new model_dom();
+        $sub_domain=$sub_domaincon->dom();
+        $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyLog/';
+      
+        $data = array(
+          
+          'xapiKey' => $headerslink
+          
+          );
+      $curl = curl_init();
+      
+      // Configurar las opciones de la sesión cURL
+      curl_setopt($curl, CURLOPT_URL, $url);
+      curl_setopt($curl, CURLOPT_POST, true);
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      // curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+      
+      // Ejecutar la solicitud y obtener la respuesta
+      $response1 = curl_exec($curl);
+
+      
+
+
+      curl_close($curl);
+      $url = $sub_domain.'/crystalCore/apiUsers/v1/validateLogInChange/'.$headerslink;
+
+      $curl = curl_init();
+      
+      // Configurar las opciones de la sesión cURL
+      curl_setopt($curl, CURLOPT_URL, $url);
+      curl_setopt($curl, CURLOPT_POST, true);
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $dta);
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      
+      
+      // Ejecutar la solicitud y obtener la respuesta
+      $response2 = curl_exec($curl);
+      
+
+    //echo json_encode($headers);
+
+//echo $response2;
+    curl_close($curl);
+
+    //echo json_encode($headers);
+        // Realizar acciones basadas en los valores de los encabezados
+  //echo "true";
+
+echo $response2;
+//echo json_encode($dta);
+        
+    } else {
+        echo 'Error: Encabezados faltantes';
+        
+    }
+});
+
+
 
 Flight::route('POST /validateLogOut/@headerslink', function ($headerslink) {
     header("Access-Control-Allow-Origin: *");
@@ -2374,6 +2459,99 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
             
             // Realizar la solicitud y obtener la respuesta
             $response = file_get_contents($sub_domain.'/crystalCore/apiUsers/v1/getProfileInfoLog/'.$userName.'/'.$sessionId, false, $context);
+                 
+           
+        
+              echo $response;
+
+
+
+        } else {
+           echo 'Error: Autenticación fallida';
+             //echo json_encode($response1);
+           // echo $response1;
+        }
+    } else {
+        echo 'Error: Encabezados faltantes';
+    }
+
+
+
+
+
+
+});
+
+
+
+Flight::route('GET /getProfileInfoLogChange/@userName', function ($userName) {
+    
+    header("Access-Control-Allow-Origin: *");
+
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+
+
+    $headers = getallheaders();
+    
+    // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
+    if (isset($headers['x-api-Key'])) {
+        // Leer los datos de la solicitud
+       
+        // Acceder a los encabezados
+        
+        $xApiKey = $headers['x-api-Key'];
+        $ApiKey = $headers['Api-Key'];
+        $sub_domaincon=new model_dom();
+        $sub_domain=$sub_domaincon->dom();
+        $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
+      
+        $data = array(
+            
+            'xapiKey' => $xApiKey,
+            'apiKey' => $ApiKey
+            
+            );
+      $curl = curl_init();
+      
+      // Configurar las opciones de la sesión cURL
+      curl_setopt($curl, CURLOPT_URL, $url);
+      curl_setopt($curl, CURLOPT_POST, true);
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      // curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+      
+      // Ejecutar la solicitud y obtener la respuesta
+      $response1 = curl_exec($curl);
+
+      
+
+
+      curl_close($curl);
+
+      
+
+        // Realizar acciones basadas en los valores de los encabezados
+
+
+        if ($response1 != 'false' ) {
+           
+
+
+            $sub_domaincons = new model_dom;
+            $sub_domain = $sub_domaincons->dom();
+            
+            // Configurar los headers
+            $options = array(
+                'http' => array(
+                    'header' => "Api-Key: $response1\r\n" .
+                                "x-api-Key: $xApiKey\r\n"
+                )
+            );
+            $context = stream_context_create($options);
+            
+            // Realizar la solicitud y obtener la respuesta
+            $response = file_get_contents($sub_domain.'/crystalCore/apiUsers/v1/getProfileInfoLogChange/'.$userName, false, $context);
                  
            
         
