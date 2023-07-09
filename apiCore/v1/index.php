@@ -886,15 +886,17 @@ echo $response2;
 
 Flight::route('POST /validateLogIn/@headerslink', function ($headerslink) {
     header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+    
     $parts = explode(" ", $headerslink);
+    // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
+    if (!empty($parts[1])) {
+    
 
 // Crear el array con los valores correspondientes
 
 
-    // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if ($headerslink !="0") {
         // Leer los datos de la solicitud
         $dta = [
             
