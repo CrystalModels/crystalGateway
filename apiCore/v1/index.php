@@ -867,6 +867,82 @@ echo $response2;
 });
 
 
+Flight::route('POST /changeKeywordSession/@headerslink', function ($headerslink) {
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+    
+   
+    // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
+    if (!empty($headerslink)) {
+        // Leer los datos de la solicitud
+        $dta = [
+            
+            'userName' => Flight::request()->data->userName,
+            'keyword' => Flight::request()->data->keyword,
+            'newkeyWord' => Flight::request()->data->newkeyWord
+        ];
+
+
+        // Acceder a los encabezados
+       
+        $sub_domaincon=new model_dom();
+        $sub_domain=$sub_domaincon->dom();
+        $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyLog/';
+      
+        $data = array(
+          
+          'xapiKey' => $headerslink
+          
+          );
+      $curl = curl_init();
+      
+      // Configurar las opciones de la sesión cURL
+      curl_setopt($curl, CURLOPT_URL, $url);
+      curl_setopt($curl, CURLOPT_POST, true);
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      // curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+      
+      // Ejecutar la solicitud y obtener la respuesta
+      $response1 = curl_exec($curl);
+
+      
+
+
+      curl_close($curl);
+      $url = $sub_domain.'/crystalCore/apiUsers/v1/changeKeywordSession/'.$headerslink;
+
+      $curl = curl_init();
+      
+      // Configurar las opciones de la sesión cURL
+      curl_setopt($curl, CURLOPT_URL, $url);
+      curl_setopt($curl, CURLOPT_POST, true);
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $dta);
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      
+     
+      // Ejecutar la solicitud y obtener la respuesta
+      $response2 = curl_exec($curl);
+      
+
+    //echo json_encode($headers);
+
+//echo $response2;
+    curl_close($curl);
+
+    //echo json_encode($headers);
+        // Realizar acciones basadas en los valores de los encabezados
+  //echo "true";
+
+echo $response2;
+
+        
+    } else {
+        echo 'Error: Encabezados faltantes';
+    }
+});
+
 
 Flight::route('POST /validateLogIn/@headerslink', function ($headerslink) {
     header("Access-Control-Allow-Origin: *");
