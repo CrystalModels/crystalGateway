@@ -1597,7 +1597,7 @@ Flight::route('POST /closeSession/@headerslink', function ($headerslink) {
         $dta = [
             
             'userName' => Flight::request()->data->userName,
-            'sessionId' => Flight::request()->data->keyWord
+            'sessionId' => Flight::request()->data->sessionId
         ];
 
 
