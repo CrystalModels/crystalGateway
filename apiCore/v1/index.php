@@ -1491,15 +1491,15 @@ Flight::route('GET /getSecretKey/@clientId', function ($clientId) {
 });
 
 
-Flight::route('POST /forgotKeywordValidate/', function () {
+Flight::route('POST /forgotKeywordValidate/@headersLink', function ($headersLink) {
     header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     // Leer los encabezados
-    $headers = getallheaders();
+   
     
     // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['x-api-Key'])) {
+    if (!empty($headersLink)) {
         // Leer los datos de la solicitud
         $dta = [
             
@@ -1512,16 +1512,14 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 
         // Acceder a los encabezados
         
-        $xApiKey = $headers['x-api-Key'];
-        
-
+       
         $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->dom();
         $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyLogGateway/';
       
         $data = array(
           
-          'xapiKey' => $xApiKey
+          'xapiKey' => $headersLink
           
           );
       $curl = curl_init();
@@ -1552,9 +1550,86 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
       
       $headers1 = array(
           
-          'x-api-Key: ' . $xApiKey
+          'x-api-Key: ' . $headersLink
       );
       curl_setopt($curl, CURLOPT_HTTPHEADER, $headers1);
+      
+      // Ejecutar la solicitud y obtener la respuesta
+      $response2 = curl_exec($curl);
+      
+
+    //echo json_encode($headers);
+
+//echo $response2;
+    curl_close($curl);
+
+    //echo json_encode($headers);
+        // Realizar acciones basadas en los valores de los encabezados
+  //echo "true";
+
+echo $response2;
+
+        
+    } else {
+        echo 'Error: Encabezados faltantes';
+    }
+});
+
+
+
+Flight::route('POST /changePass/@headerslink', function ($headersLink) {
+    header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+    // Leer los encabezados
+    $headers = getallheaders();
+    
+    // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
+    if (!empty($headersLink)) {
+        // Leer los datos de la solicitud
+        $dta = [
+            
+            'keyword' => Flight::request()->data->keyword,
+            'userName' => Flight::request()->data->userName,
+            'newkeyWord' => Flight::request()->data->newkeyWord
+        ];
+
+
+
+        $sub_domaincon=new model_dom();
+        $sub_domain=$sub_domaincon->dom();
+        $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyLogGateway/';
+      
+        $data = array(
+          
+          'xapiKey' => $headersLink
+          
+          );
+      $curl = curl_init();
+      
+      // Configurar las opciones de la sesión cURL
+      curl_setopt($curl, CURLOPT_URL, $url);
+      curl_setopt($curl, CURLOPT_POST, true);
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      // curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+      
+      // Ejecutar la solicitud y obtener la respuesta
+      $response1 = curl_exec($curl);
+
+      
+
+
+      curl_close($curl);
+      $url = $sub_domain.'/crystalCore/apiUsers/v1/changePass/'.$headersLink;
+
+      $curl = curl_init();
+      
+      // Configurar las opciones de la sesión cURL
+      curl_setopt($curl, CURLOPT_URL, $url);
+      curl_setopt($curl, CURLOPT_POST, true);
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $dta);
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
       
       // Ejecutar la solicitud y obtener la respuesta
       $response2 = curl_exec($curl);
