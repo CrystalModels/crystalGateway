@@ -342,7 +342,7 @@ Flight::route('GET /getMySchedule/@headerslink/@profileId', function ($headersli
             $context = stream_context_create($options);
             
             // Realizar la solicitud y obtener la respuesta
-            $response = file_get_contents($sub_domain.'/crystalIntegrations/apiControlTower/v1/getMySchedule/'.$profileId, false, $context);
+            $response = file_get_contents($sub_domain.'/crystalIntegrations/apiControlTower/v1/getMyschedule/'.$profileId, false, $context);
                  
            
         
