@@ -1809,9 +1809,8 @@ Flight::route('POST /putMyAlert/@apk/@xapk', function ($apk,$xapk) {
         // Leer los datos de la solicitud
         $dta = array(
             
-            'name' => Flight::request()->data->name,
-            'comments' => Flight::request()->data->comments,
-            'roomId' => Flight::request()->data->roomId
+            'alertId' => Flight::request()->data->alertId,
+            'response' => Flight::request()->data->response
         );
 
 
