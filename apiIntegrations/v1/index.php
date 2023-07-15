@@ -7,95 +7,6 @@ require 'env/domain.php';
 
  
 
-Flight::route('POST /postLogReport', function () {
-    header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-    // Leer los encabezados
-    $headers = getallheaders();
-    
-    // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
-    if (isset($headers['Api-Key']) && isset($headers['x-api-Key'])) {
-        // Leer los datos de la solicitud
-        $dta = [
-            
-            'profileId' => Flight::request()->data->profileId,
-            'type' => Flight::request()->data->type
-        ];
-
-
-
-        // Acceder a los encabezados
-        $apiKey = $headers['Api-Key'];
-        $xApiKey = $headers['x-api-Key'];
-        
-
-        $sub_domaincon=new model_dom();
-        $sub_domain=$sub_domaincon->dom();
-        $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
-      
-        $data = array(
-          'ApiKey' =>$apiKey, 
-          'xapiKey' => $xApiKey
-          
-          );
-      $curl = curl_init();
-      
-      // Configurar las opciones de la sesión cURL
-      curl_setopt($curl, CURLOPT_URL, $url);
-      curl_setopt($curl, CURLOPT_POST, true);
-      curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-      // curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-      
-      // Ejecutar la solicitud y obtener la respuesta
-      $response1 = curl_exec($curl);
-
-      
-      $sub_domaincon=new model_dom();
-      $sub_domain=$sub_domaincon->domIntegrations();
-
-      curl_close($curl);
-      $url = $sub_domain.'/crystalIntegrations/apiControlTower/v1/postLogReport/';
-
-      $curl = curl_init();
-      
-      // Configurar las opciones de la sesión cURL
-      curl_setopt($curl, CURLOPT_URL, $url);
-      curl_setopt($curl, CURLOPT_POST, true);
-      curl_setopt($curl, CURLOPT_POSTFIELDS, $dta);
-      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-      
-      $headers1 = array(
-          'Api-Key: ' . $response1,
-          'x-api-Key: ' . $xApiKey
-      );
-      curl_setopt($curl, CURLOPT_HTTPHEADER, $headers1);
-      
-      // Ejecutar la solicitud y obtener la respuesta
-      $response2 = curl_exec($curl);
-      
-
-    //echo json_encode($headers);
-
-//echo $response2;
-    curl_close($curl);
-
-    //echo json_encode($headers);
-        // Realizar acciones basadas en los valores de los encabezados
-  //echo "true";
-
-echo $response2;
-
-        
-    } else {
-        echo 'Error: Encabezados faltantes';
-    }
-});
-
-
-
-
 
 Flight::route('GET /getAllLogsBySuperAdmin/@headerslink', function ($headerslink) {
     
@@ -2156,6 +2067,88 @@ echo $response2;
     }
 });
 
+
+Flight::route('POST /postLogReport/@apk/@xapk', function ($apk,$xapk) {
+   
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+    
+   
+    // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
+    if (!empty($apk) && !empty($xapk)) {
+        // Leer los datos de la solicitud
+        $dta = array(
+            
+            'value' => Flight::request()->data->value,
+            'profileId' => Flight::request()->data->profileId
+        );
+
+
+
+
+        $sub_domaincon=new model_dom();
+        $sub_domain=$sub_domaincon->dom();
+        $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
+      
+        $data = array(
+            'ApiKey' =>$apk, 
+            'xapiKey' => $xapk
+          
+          );
+      $curl = curl_init();
+      
+      // Configurar las opciones de la sesión cURL
+      curl_setopt($curl, CURLOPT_URL, $url);
+      curl_setopt($curl, CURLOPT_POST, true);
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      // curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+      
+      // Ejecutar la solicitud y obtener la respuesta
+      $response1 = curl_exec($curl);
+
+      
+      $sub_domaincon=new model_dom();
+      $sub_domain=$sub_domaincon->domIntegrations();
+
+
+      curl_close($curl);
+      $url = $sub_domain."/crystalIntegrations/apiControlTower/v1/postLogReport/$response1/$xapk";
+
+      $curl = curl_init();
+      $dt=json_encode($dta);
+      // Configurar las opciones de la sesión cURL
+      curl_setopt($curl, CURLOPT_URL, $url);
+      curl_setopt($curl, CURLOPT_POST, true);
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $dt);
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      
+      $headers = array(
+        'Content-Type: application/json'
+    );
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+      
+      // Ejecutar la solicitud y obtener la respuesta
+      $response2 = curl_exec($curl);
+      
+
+    //echo json_encode($headers);
+
+//echo $response2;
+    curl_close($curl);
+
+    //echo json_encode($headers);
+        // Realizar acciones basadas en los valores de los encabezados
+  //echo "true";
+
+echo $response2;
+
+       
+    } else {
+        echo 'Error: Encabezados faltantes';
+    }
+});
 
 
 Flight::route('POST /postAlert/@apk/@xapk', function ($apk,$xapk) {
