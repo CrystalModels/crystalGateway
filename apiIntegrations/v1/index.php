@@ -997,7 +997,7 @@ Flight::route('GET /getAllPagesModelsNot/@headerslink/@modelId', function ($head
 
 
 
-Flight::route('GET /getAllPagesModelsHis/@headerslink/@modelId/@sdate', function ($headerslink,$modelId,$sdate) {
+Flight::route('GET /getAllPagesModelsHis/@headerslink/@modelId/@sdate/@edate', function ($headerslink,$modelId,$sdate,$edate) {
     
    
     header("Access-Control-Allow-Origin: *");
@@ -1062,7 +1062,7 @@ Flight::route('GET /getAllPagesModelsHis/@headerslink/@modelId/@sdate', function
             $context = stream_context_create($options);
             
             // Realizar la solicitud y obtener la respuesta
-            $response = file_get_contents($sub_domain.'/crystalIntegrations/apiControlTower/v1/getAllPagesModelsHis/'.$modelId.'/'.$sdate, false, $context);
+            $response = file_get_contents($sub_domain.'/crystalIntegrations/apiControlTower/v1/getAllPagesModelsHis/'.$modelId.'/'.$sdate.'/'.$edate, false, $context);
                  
            
         
