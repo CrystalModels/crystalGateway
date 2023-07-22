@@ -5,7 +5,7 @@ class model_dom {
 function dom() {
     $option=3; //opcion de subdominio
 
-
+  
     if($option==1){//localhost
         $sub_domain="http://localhost";
         return $sub_domain;
