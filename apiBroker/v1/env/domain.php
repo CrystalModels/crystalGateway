@@ -30,7 +30,7 @@ function dom() {
 }
 
 function domIntegrations() {
-    $option=3; //opcion de subdominio
+    $option=2; //opcion de subdominio
 
 
     if($option==1){//localhost
