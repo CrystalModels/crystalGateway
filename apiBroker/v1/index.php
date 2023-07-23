@@ -532,7 +532,7 @@ Flight::route('GET /getModelInfo/@headerslink/@profileId', function ($headerslin
             $sub_domaincon=new model_dom();
         $sub_domain=$sub_domaincon->domIntegrations();
             // Realizar la solicitud y obtener la respuesta
-            $response = file_get_contents($sub_domain.'/crystalBroker/apiJoin/v1/getModelInfo/'.$profileId, false, $context);
+           // $response = file_get_contents($sub_domain.'/crystalBroker/apiJoin/v1/getModelInfo/'.$profileId, false, $context);
                  
            
         
