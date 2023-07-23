@@ -515,7 +515,7 @@ Flight::route('GET /getModelInfo/@headerslink/@profileId', function ($headerslin
 
         // Realizar acciones basadas en los valores de los encabezados
 
-
+        echo $response1;
         if ($response1 != 'false' ) {
            
 
