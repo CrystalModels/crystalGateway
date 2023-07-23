@@ -520,9 +520,7 @@ Flight::route('GET /getModelInfo/@headerslink/@profileId', function ($headerslin
            
 
 
-            $sub_domaincons = new model_dom;
-            $sub_domain = $sub_domaincons->dom();
-            
+          
             // Configurar los headers
             $options = array(
                 'http' => array(
