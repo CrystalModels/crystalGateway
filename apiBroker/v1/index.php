@@ -536,7 +536,7 @@ Flight::route('GET /getModelInfo/@headerslink/@profileId', function ($headerslin
                  
            
         
-              echo $response;
+              echo $response1;
 
 
 
