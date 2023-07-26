@@ -614,6 +614,7 @@ Flight::route('GET /getVersionList/@headerslink/@value', function ($headerslink,
            
 if($value=="coreusers"){
 
+   
     $sub_domaincons = new model_dom;
     $sub_domain = $sub_domaincons->dom();
     
@@ -627,7 +628,7 @@ if($value=="coreusers"){
     $context = stream_context_create($options);
     
     // Realizar la solicitud y obtener la respuesta
-    $response = file_get_contents($sub_domain.'/crystalCore/apiUsers/v1/getVersionList/', false, $context);
+    $response = file_get_contents($sub_domain.'/crystalCore/apiAuth/v1/getVersionList/', false, $context);
          
    
 
