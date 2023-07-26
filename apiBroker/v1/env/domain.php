@@ -59,7 +59,7 @@ function domIntegrations() {
 
 
 function domInt() {
-    $option=2; //opcion de subdominio
+    $option=3; //opcion de subdominio
 
 
     if($option==1){//localhost
