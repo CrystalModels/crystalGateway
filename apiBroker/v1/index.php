@@ -720,7 +720,7 @@ Flight::route('GET /getVersionListIntControl/@headerslink/', function ($headersl
     // Configurar los headers
   
     // Realizar la solicitud y obtener la respuesta
-    $response = file_get_contents($sub_domain.'/crystalIntegrations/apiControlTower/v1/getVersionList/', false, $context);
+    $response = file_get_contents($sub_domain.'/crystalIntegrations/apiControlTower/v1/getVersionList', false, $context);
          
    
 
