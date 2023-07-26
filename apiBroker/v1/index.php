@@ -805,7 +805,7 @@ Flight::route('GET /getVersionListIntControl/@headerslink/', function ($headersl
             $context = stream_context_create($options);
 
     $sub_domaincons = new model_dom;
-    $sub_domain = $sub_domaincons->dom();
+    $sub_domain = $sub_domaincons->domInt();
     
     // Configurar los headers
   
