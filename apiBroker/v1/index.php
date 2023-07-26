@@ -612,23 +612,23 @@ Flight::route('GET /getVersionList/@headerslink/@value', function ($headerslink,
 
         if ($response1 != 'false' ) {
            
+            $options = array(
+                'http' => array(
+                    'header' => "Api-Key: $response1\r\n" .
+                                "x-api-Key: $xApiKey\r\n"
+                )
+            );
+            $context = stream_context_create($options);
+            
 if($value=="coreusers"){
 
-   
     $sub_domaincons = new model_dom;
     $sub_domain = $sub_domaincons->dom();
     
     // Configurar los headers
-    $options = array(
-        'http' => array(
-            'header' => "Api-Key: $response1\r\n" .
-                        "x-api-Key: $xApiKey\r\n"
-        )
-    );
-    $context = stream_context_create($options);
-    
+  
     // Realizar la solicitud y obtener la respuesta
-    $response = file_get_contents($sub_domain.'/crystalCore/apiAuth/v1/getVersionList/', false, $context);
+    $response = file_get_contents($sub_domain.'/crystalCore/apiUsers/v1/getVersionList/', false, $context);
          
    
 
@@ -642,14 +642,7 @@ if($value=="coreauth"){
     $sub_domain = $sub_domaincons->dom();
     
     // Configurar los headers
-    $options = array(
-        'http' => array(
-            'header' => "Api-Key: $response1\r\n" .
-                        "x-api-Key: $xApiKey\r\n"
-        )
-    );
-    $context = stream_context_create($options);
-    
+  
     // Realizar la solicitud y obtener la respuesta
     $response = file_get_contents($sub_domain.'/crystalCore/apiAuth/v1/getVersionList/', false, $context);
          
@@ -666,13 +659,7 @@ if($value=="integrationscontrol"){
     $sub_domain = $sub_domaincons->domInt();
     
     // Configurar los headers
-    $options = array(
-        'http' => array(
-            'header' => "Api-Key: $response1\r\n" .
-                        "x-api-Key: $xApiKey\r\n"
-        )
-    );
-    $context = stream_context_create($options);
+  
     
     // Realizar la solicitud y obtener la respuesta
     $response = file_get_contents($sub_domain.'/crystalIntegrations/apiControlTower/v1/getVersionList/', false, $context);
