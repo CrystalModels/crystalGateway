@@ -615,7 +615,7 @@ Flight::route('GET /getVersionList/@headerslink/', function ($headerslink) {
 
 
             $sub_domaincons = new model_dom;
-            $sub_domain = $sub_domaincons->domIntegrations();
+            $sub_domain = $sub_domaincons->dom();
             
             // Configurar los headers
             $options = array(
