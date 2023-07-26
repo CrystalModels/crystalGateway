@@ -564,7 +564,7 @@ Flight::route('GET /getModelInfo/@headerslink/@profileId', function ($headerslin
 
 
 
-Flight::route('GET /getVersionList/@headerslink/@value', function ($headerslink,$value) {
+Flight::route('GET /getVersionList/@headerslink/', function ($headerslink) {
     
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
@@ -619,8 +619,6 @@ Flight::route('GET /getVersionList/@headerslink/@value', function ($headerslink,
                 )
             );
             $context = stream_context_create($options);
-            
-if($value=="coreusers"){
 
     $sub_domaincons = new model_dom;
     $sub_domain = $sub_domaincons->dom();
@@ -635,41 +633,7 @@ if($value=="coreusers"){
       echo $response;
 
 
-}
-if($value=="coreauth"){
 
-    $sub_domaincons = new model_dom;
-    $sub_domain = $sub_domaincons->dom();
-    
-    // Configurar los headers
-  
-    // Realizar la solicitud y obtener la respuesta
-    $response = file_get_contents($sub_domain.'/crystalCore/apiAuth/v1/getVersionList/', false, $context);
-         
-   
-
-      echo $response;
-
-
-}
-
-if($value=="integrationscontrol"){
-
-    $sub_domaincons = new model_dom;
-    $sub_domain = $sub_domaincons->domInt();
-    
-    // Configurar los headers
-  
-    
-    // Realizar la solicitud y obtener la respuesta
-    $response = file_get_contents($sub_domain.'/crystalIntegrations/apiControlTower/v1/getVersionList/', false, $context);
-         
-   
-
-      echo $response;
-
-
-}
 
           
 
