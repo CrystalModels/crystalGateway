@@ -3067,7 +3067,7 @@ Flight::route('GET /getSessions/@headerslink/@userName', function ($headerslink,
         header("Access-Control-Allow-Origin: *");
         header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
         header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-        
+           
         $parts = explode(" ", $headerslink);
     
         $apiKey=$parts[0];
