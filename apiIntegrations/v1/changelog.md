@@ -1,5 +1,7 @@
 # Changelog
 
+## [1.2.0-Beta] - 2023-07-27
+- endpoints de cortes
 ## [1.0.1-Beta] - 2023-07-26
 - Sistema de versionamiento
 ## [1.0.0-Beta] - 2023-07-25
