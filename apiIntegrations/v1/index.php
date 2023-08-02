@@ -4356,7 +4356,7 @@ Flight::route('GET /getModelEarn/@headerslink/@modelId/@sDate/@eDate', function 
 
 Flight::route('GET /getModelEarnAdd/@headerslink/@modelId', function ($headerslink,$modelId) {
     
-   
+    
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
