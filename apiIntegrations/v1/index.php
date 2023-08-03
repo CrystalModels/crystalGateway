@@ -3988,7 +3988,6 @@ Flight::route('GET /getVersionListThis/@headerslink/', function ($headerslink) {
 
 
 
-
 Flight::route('POST /postCutting/@apk/@xapk', function ($apk,$xapk) {
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
@@ -4075,6 +4074,97 @@ echo $response2;
 });
 
 
+
+
+
+
+Flight::route('POST /adjustModelEarn/@apk/@xapk', function ($apk,$xapk) {
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+    
+   
+    // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
+    if (!empty($apk) && !empty($xapk)) {
+        // Leer los datos de la solicitud
+        $dta = array(
+            
+            'value' => Flight::request()->data->value,
+            'earnId' => Flight::request()->data->earnId,
+            'comment' => Flight::request()->data->comment
+            
+        );
+
+        $sub_domaincon=new model_dom();
+        $sub_domain=$sub_domaincon->dom();
+        $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
+      
+        $data = array(
+          'ApiKey' =>$apk, 
+          'xapiKey' => $xapk
+          
+          );
+
+
+
+      $curl = curl_init();
+      
+      // Configurar las opciones de la sesión cURL
+      curl_setopt($curl, CURLOPT_URL, $url);
+      curl_setopt($curl, CURLOPT_POST, true);
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      // curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+      
+      // Ejecutar la solicitud y obtener la respuesta
+      $response1 = curl_exec($curl);
+
+      
+$dt=json_encode($dta);
+      curl_close($curl);
+
+      $sub_domaincon=new model_dom();
+      $sub_domain=$sub_domaincon->domIntegrations();
+
+     $url1 = $sub_domain."/crystalIntegrations/apiControlTower/v1/adjustModelEarn/$response1/$xapk";
+    // $url1 = $sub_domain."/crystalIntegrations/apiControlTower/v1/postRooms1/$response1/$xApiKey";
+ 
+      $curl1 = curl_init();
+      
+      curl_setopt($curl1, CURLOPT_URL, $url1);
+      curl_setopt($curl1, CURLOPT_POST, true);
+      curl_setopt($curl1, CURLOPT_POSTFIELDS, $dt);
+      curl_setopt($curl1, CURLOPT_RETURNTRANSFER, true);
+
+      // Establecer el encabezado con el API key
+      $headers = array(
+          'Content-Type: application/json'
+      );
+      curl_setopt($curl1, CURLOPT_HTTPHEADER, $headers);
+      
+      
+      // Ejecutar la solicitud y obtener la respuesta
+      $response2 = curl_exec($curl1);
+      
+
+    //echo json_encode($headers);
+
+//echo $response2;
+    curl_close($curl1);
+
+    //echo json_encode($dta);
+        // Realizar acciones basadas en los valores de los encabezados
+  //echo "true";
+
+echo $response2;
+        
+    } else {
+        echo 'Error: Encabezados faltantes';
+    }
+});
+
+
+
 Flight::route('POST /putCuttingStatus/@apk/@xapk', function ($apk,$xapk) {
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
@@ -4159,6 +4249,649 @@ echo $response2;
     }
 });
 
+
+
+
+
+
+
+
+Flight::route('GET /getPutsCreatedNotStart/@headerslink', function ($headerslink) {
+    
+   
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+    
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
+    // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
+    if (!empty($apiKey) && !empty($xApiKey)) {
+        // Leer los datos de la solicitud
+       
+      
+        
+        $sub_domaincon=new model_dom();
+        $sub_domain=$sub_domaincon->dom();
+        $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
+      
+        $data = array(
+            'ApiKey' =>$apiKey, 
+            'xapiKey' => $xApiKey
+            
+            );
+      $curl = curl_init();
+      
+      // Configurar las opciones de la sesión cURL
+      curl_setopt($curl, CURLOPT_URL, $url);
+      curl_setopt($curl, CURLOPT_POST, true);
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      // curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+      
+      // Ejecutar la solicitud y obtener la respuesta
+      $response1 = curl_exec($curl);
+
+      
+
+
+      curl_close($curl);
+
+      
+
+        // Realizar acciones basadas en los valores de los encabezados
+
+
+        if ($response1 != 'false' ) {
+           
+
+
+            $sub_domaincons = new model_dom;
+            $sub_domain = $sub_domaincons->domIntegrations();
+            
+            // Configurar los headers
+            $options = array(
+                'http' => array(
+                    'header' => "Api-Key: $response1\r\n" .
+                                "x-api-Key: $xApiKey\r\n"
+                )
+            );
+            $context = stream_context_create($options);
+            
+            // Realizar la solicitud y obtener la respuesta
+            $response = file_get_contents($sub_domain.'/crystalIntegrations/apiControlTower/v1/getPutsCreatedNotStart/', false, $context);
+                 
+           
+        
+              echo $response;
+
+
+
+        } else {
+           echo 'Error: Autenticación fallida';
+             //echo json_encode($response1);
+           // echo $response1;
+        }
+    } else {
+        echo 'Error: Encabezados faltantes';
+    }
+
+
+
+
+
+
+});
+
+
+Flight::route('GET /getPutsCreatedStart/@headerslink', function ($headerslink) {
+    
+   
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+    
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
+    // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
+    if (!empty($apiKey) && !empty($xApiKey)) {
+        // Leer los datos de la solicitud
+       
+      
+        
+        $sub_domaincon=new model_dom();
+        $sub_domain=$sub_domaincon->dom();
+        $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
+      
+        $data = array(
+            'ApiKey' =>$apiKey, 
+            'xapiKey' => $xApiKey
+            
+            );
+      $curl = curl_init();
+      
+      // Configurar las opciones de la sesión cURL
+      curl_setopt($curl, CURLOPT_URL, $url);
+      curl_setopt($curl, CURLOPT_POST, true);
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      // curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+      
+      // Ejecutar la solicitud y obtener la respuesta
+      $response1 = curl_exec($curl);
+
+      
+
+
+      curl_close($curl);
+
+      
+
+        // Realizar acciones basadas en los valores de los encabezados
+
+
+        if ($response1 != 'false' ) {
+           
+
+
+            $sub_domaincons = new model_dom;
+            $sub_domain = $sub_domaincons->domIntegrations();
+            
+            // Configurar los headers
+            $options = array(
+                'http' => array(
+                    'header' => "Api-Key: $response1\r\n" .
+                                "x-api-Key: $xApiKey\r\n"
+                )
+            );
+            $context = stream_context_create($options);
+            
+            // Realizar la solicitud y obtener la respuesta
+            $response = file_get_contents($sub_domain.'/crystalIntegrations/apiControlTower/v1/getPutsCreatedStart/', false, $context);
+                 
+           
+        
+              echo $response;
+
+
+
+        } else {
+           echo 'Error: Autenticación fallida';
+             //echo json_encode($response1);
+           // echo $response1;
+        }
+    } else {
+        echo 'Error: Encabezados faltantes';
+    }
+
+
+
+
+
+
+});
+
+
+
+
+Flight::route('GET /getPutsCreatedFinished/@headerslink', function ($headerslink) {
+    
+   
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+    
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
+    // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
+    if (!empty($apiKey) && !empty($xApiKey)) {
+        // Leer los datos de la solicitud
+       
+      
+        
+        $sub_domaincon=new model_dom();
+        $sub_domain=$sub_domaincon->dom();
+        $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
+      
+        $data = array(
+            'ApiKey' =>$apiKey, 
+            'xapiKey' => $xApiKey
+            
+            );
+      $curl = curl_init();
+      
+      // Configurar las opciones de la sesión cURL
+      curl_setopt($curl, CURLOPT_URL, $url);
+      curl_setopt($curl, CURLOPT_POST, true);
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      // curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+      
+      // Ejecutar la solicitud y obtener la respuesta
+      $response1 = curl_exec($curl);
+
+      
+
+
+      curl_close($curl);
+
+      
+
+        // Realizar acciones basadas en los valores de los encabezados
+
+
+        if ($response1 != 'false' ) {
+           
+
+
+            $sub_domaincons = new model_dom;
+            $sub_domain = $sub_domaincons->domIntegrations();
+            
+            // Configurar los headers
+            $options = array(
+                'http' => array(
+                    'header' => "Api-Key: $response1\r\n" .
+                                "x-api-Key: $xApiKey\r\n"
+                )
+            );
+            $context = stream_context_create($options);
+            
+            // Realizar la solicitud y obtener la respuesta
+            $response = file_get_contents($sub_domain.'/crystalIntegrations/apiControlTower/v1/getPutsCreatedFinished/', false, $context);
+                 
+           
+        
+              echo $response;
+
+
+
+        } else {
+           echo 'Error: Autenticación fallida';
+             //echo json_encode($response1);
+           // echo $response1;
+        }
+    } else {
+        echo 'Error: Encabezados faltantes';
+    }
+
+
+
+
+
+
+});
+
+
+
+
+
+
+
+Flight::route('GET /getModelEarn/@headerslink/@modelId/@cutName', function ($headerslink,$modelId,$cutName) {
+    
+   
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+    
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
+    // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
+    if (!empty($apiKey) && !empty($xApiKey)) {
+        // Leer los datos de la solicitud
+       
+      
+        
+        $sub_domaincon=new model_dom();
+        $sub_domain=$sub_domaincon->dom();
+        $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
+      
+        $data = array(
+            'ApiKey' =>$apiKey, 
+            'xapiKey' => $xApiKey
+            
+            );
+      $curl = curl_init();
+      
+      // Configurar las opciones de la sesión cURL
+      curl_setopt($curl, CURLOPT_URL, $url);
+      curl_setopt($curl, CURLOPT_POST, true);
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      // curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+      
+      // Ejecutar la solicitud y obtener la respuesta
+      $response1 = curl_exec($curl);
+
+      
+
+
+      curl_close($curl);
+
+      
+
+        // Realizar acciones basadas en los valores de los encabezados
+
+
+        if ($response1 != 'false' ) {
+           
+
+
+            $sub_domaincons = new model_dom;
+            $sub_domain = $sub_domaincons->domIntegrations();
+            
+            // Configurar los headers
+            $options = array(
+                'http' => array(
+                    'header' => "Api-Key: $response1\r\n" .
+                                "x-api-Key: $xApiKey\r\n"
+                )
+            );
+            $context = stream_context_create($options);
+            
+            // Realizar la solicitud y obtener la respuesta
+            $response = file_get_contents($sub_domain.'/crystalIntegrations/apiControlTower/v1/getModelEarn/'.$modelId.'/'.$cutName, false, $context);
+                 
+           
+        
+              echo $response;
+
+
+
+        } else {
+           echo 'Error: Autenticación fallida';
+             //echo json_encode($response1);
+           // echo $response1;
+        }
+    } else {
+        echo 'Error: Encabezados faltantes';
+    }
+
+
+
+
+
+
+});
+
+
+
+Flight::route('GET /getModelEarnTotal/@headerslink/@modelId/@cutName', function ($headerslink,$modelId,$cutName) {
+    
+   
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+    
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
+    // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
+    if (!empty($apiKey) && !empty($xApiKey)) {
+        // Leer los datos de la solicitud
+       
+      
+        
+        $sub_domaincon=new model_dom();
+        $sub_domain=$sub_domaincon->dom();
+        $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
+      
+        $data = array(
+            'ApiKey' =>$apiKey, 
+            'xapiKey' => $xApiKey
+            
+            );
+      $curl = curl_init();
+      
+      // Configurar las opciones de la sesión cURL
+      curl_setopt($curl, CURLOPT_URL, $url);
+      curl_setopt($curl, CURLOPT_POST, true);
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      // curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+      
+      // Ejecutar la solicitud y obtener la respuesta
+      $response1 = curl_exec($curl);
+
+      
+
+
+      curl_close($curl);
+
+      
+
+        // Realizar acciones basadas en los valores de los encabezados
+
+
+        if ($response1 != 'false' ) {
+           
+
+
+            $sub_domaincons = new model_dom;
+            $sub_domain = $sub_domaincons->domIntegrations();
+            
+            // Configurar los headers
+            $options = array(
+                'http' => array(
+                    'header' => "Api-Key: $response1\r\n" .
+                                "x-api-Key: $xApiKey\r\n"
+                )
+            );
+            $context = stream_context_create($options);
+            
+            // Realizar la solicitud y obtener la respuesta
+            $response = file_get_contents($sub_domain.'/crystalIntegrations/apiControlTower/v1/getModelEarnTotal/'.$modelId.'/'.$cutName, false, $context);
+                 
+           
+        
+              echo $response;
+
+
+
+        } else {
+           echo 'Error: Autenticación fallida';
+             //echo json_encode($response1);
+           // echo $response1;
+        }
+    } else {
+        echo 'Error: Encabezados faltantes';
+    }
+
+
+
+
+
+
+});
+
+Flight::route('GET /getModelEarnAdd/@headerslink/@modelId', function ($headerslink,$modelId) {
+    
+    
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+    
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
+    // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
+    if (!empty($apiKey) && !empty($xApiKey)) {
+        // Leer los datos de la solicitud
+       
+      
+        
+        $sub_domaincon=new model_dom();
+        $sub_domain=$sub_domaincon->dom();
+        $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
+      
+        $data = array(
+            'ApiKey' =>$apiKey, 
+            'xapiKey' => $xApiKey
+            
+            );
+      $curl = curl_init();
+      
+      // Configurar las opciones de la sesión cURL
+      curl_setopt($curl, CURLOPT_URL, $url);
+      curl_setopt($curl, CURLOPT_POST, true);
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      // curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+      
+      // Ejecutar la solicitud y obtener la respuesta
+      $response1 = curl_exec($curl);
+
+      
+
+
+      curl_close($curl);
+
+      
+
+        // Realizar acciones basadas en los valores de los encabezados
+
+
+        if ($response1 != 'false' ) {
+           
+
+
+            $sub_domaincons = new model_dom;
+            $sub_domain = $sub_domaincons->domIntegrations();
+            
+            // Configurar los headers
+            $options = array(
+                'http' => array(
+                    'header' => "Api-Key: $response1\r\n" .
+                                "x-api-Key: $xApiKey\r\n"
+                )
+            );
+            $context = stream_context_create($options);
+            
+            // Realizar la solicitud y obtener la respuesta
+            $response = file_get_contents($sub_domain.'/crystalIntegrations/apiControlTower/v1/getModelEarnAdd/'.$modelId, false, $context);
+                 
+           
+        
+              echo $response;
+
+
+
+        } else {
+           echo 'Error: Autenticación fallida';
+             //echo json_encode($response1);
+           // echo $response1;
+        }
+    } else {
+        echo 'Error: Encabezados faltantes';
+    }
+
+
+
+
+
+
+});
+
+
+
+Flight::route('GET /getModelEarnAddver/@headerslink/@modelId', function ($headerslink,$modelId) {
+    
+    
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+    
+    $parts = explode(" ", $headerslink);
+
+    $apiKey=$parts[0];
+    $xApiKey=$parts[1];
+    // Verificar si los encabezados 'Api-Key' y 'Secret-Key' existen
+    if (!empty($apiKey) && !empty($xApiKey)) {
+        // Leer los datos de la solicitud
+       
+      
+        
+        $sub_domaincon=new model_dom();
+        $sub_domain=$sub_domaincon->dom();
+        $url = $sub_domain.'/crystalCore/apiAuth/v1/authApiKeyGateway/';
+      
+        $data = array(
+            'ApiKey' =>$apiKey, 
+            'xapiKey' => $xApiKey
+            
+            );
+      $curl = curl_init();
+      
+      // Configurar las opciones de la sesión cURL
+      curl_setopt($curl, CURLOPT_URL, $url);
+      curl_setopt($curl, CURLOPT_POST, true);
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      // curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+      
+      // Ejecutar la solicitud y obtener la respuesta
+      $response1 = curl_exec($curl);
+
+      
+
+
+      curl_close($curl);
+
+      
+
+        // Realizar acciones basadas en los valores de los encabezados
+
+
+        if ($response1 != 'false' ) {
+           
+
+
+            $sub_domaincons = new model_dom;
+            $sub_domain = $sub_domaincons->domIntegrations();
+            
+            // Configurar los headers
+            $options = array(
+                'http' => array(
+                    'header' => "Api-Key: $response1\r\n" .
+                                "x-api-Key: $xApiKey\r\n"
+                )
+            );
+            $context = stream_context_create($options);
+            
+            // Realizar la solicitud y obtener la respuesta
+            $response = file_get_contents($sub_domain.'/crystalIntegrations/apiControlTower/v1/getModelEarnAddver/'.$modelId, false, $context);
+                 
+           
+        
+              echo $response;
+
+
+
+        } else {
+           echo 'Error: Autenticación fallida';
+             //echo json_encode($response1);
+           // echo $response1;
+        }
+    } else {
+        echo 'Error: Encabezados faltantes';
+    }
+
+
+
+
+
+
+});
 
 
 Flight::start();
