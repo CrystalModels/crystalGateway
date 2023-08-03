@@ -4353,7 +4353,7 @@ Flight::route('GET /getPutsCreatedFinished/@headerslink', function ($headerslink
 
 
 
-Flight::route('GET /getModelEarn/@headerslink/@modelId/@sDate/@eDate', function ($headerslink,$modelId,$sDate,$eDate) {
+Flight::route('GET /getModelEarn/@headerslink/@modelId/@cutName', function ($headerslink,$modelId,$cutName) {
     
    
     header("Access-Control-Allow-Origin: *");
@@ -4418,7 +4418,7 @@ Flight::route('GET /getModelEarn/@headerslink/@modelId/@sDate/@eDate', function 
             $context = stream_context_create($options);
             
             // Realizar la solicitud y obtener la respuesta
-            $response = file_get_contents($sub_domain.'/crystalIntegrations/apiControlTower/v1/getModelEarn/'.$modelId.'/'.$sDate.'/'.$eDate, false, $context);
+            $response = file_get_contents($sub_domain.'/crystalIntegrations/apiControlTower/v1/getModelEarn/'.$modelId.'/'.$cutName, false, $context);
                  
            
         
