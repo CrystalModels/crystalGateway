@@ -1283,7 +1283,8 @@ Flight::route('POST /sendMessage/@apk/@xapk', function ($apk,$xapk) {
         $dta = array(
             
             'value' => Flight::request()->data->value,
-            'profileId' => Flight::request()->data->profileId
+            'profileId' => Flight::request()->data->profileId,
+            'sub' => Flight::request()->data->sub
         );
 
         $sub_domaincon=new model_dom();
