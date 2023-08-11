@@ -50,7 +50,7 @@ function domIntegrations() {
     }
     if($option==4){//ptoducción
 
-        $sub_domain="https://crystalcore.crystalintegrations.online";
+        $sub_domain="https://crystalintegrations.crystalmodels.online";
         return $sub_domain;
     }
    //$sub_domain="https://dev-lugmacore.lugma.tech"; // o dirección IP del servidor de la base de datos remota
