@@ -152,7 +152,7 @@ Flight::route('GET /getAllRooms/@headerslink', function ($headerslink) {
 
 
             $sub_domaincons = new model_dom;
-            $sub_domain = $sub_domaincons->domIntegrations();
+            $sub_domain1 = $sub_domaincons->domIntegrations();
             
             // Configurar los headers
             $options = array(
@@ -164,7 +164,7 @@ Flight::route('GET /getAllRooms/@headerslink', function ($headerslink) {
             $context = stream_context_create($options);
             
             // Realizar la solicitud y obtener la respuesta
-            $response = file_get_contents($sub_domain.'/crystalIntegrations/apiControlTower/v1/getAllRooms/', false, $context);
+            $response = file_get_contents($sub_domain1.'/crystalIntegrations/apiControlTower/v1/getAllRooms/', false, $context);
                  
            
         
