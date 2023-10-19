@@ -2253,7 +2253,7 @@ $dt=json_encode($dta);
         // Realizar acciones basadas en los valores de los encabezados
   //echo "true";
 
-echo $response2;
+echo $response2." ".Flight::request()->data->pageId;
         
     } else {
         echo 'Error: Encabezados faltantes';
