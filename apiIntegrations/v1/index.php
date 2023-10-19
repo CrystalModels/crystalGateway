@@ -2230,7 +2230,7 @@ $dt=json_encode($dta);
       
       curl_setopt($curl1, CURLOPT_URL, $url1);
       curl_setopt($curl1, CURLOPT_POST, true);
-      curl_setopt($curl1, CURLOPT_POSTFIELDS, $dta);
+      curl_setopt($curl1, CURLOPT_POSTFIELDS, $dt);
       curl_setopt($curl1, CURLOPT_RETURNTRANSFER, true);
 
       // Establecer el encabezado con el API key
